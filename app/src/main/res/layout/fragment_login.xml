@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".login.LoginActivity">
+
+    <data>
+
+        <variable
+            name="loginFragmentViewModel"
+            type="com.hsecourseproject.cpchoose.login.LoginFragmentViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/guideline_m" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/guideline_m" />
+
+            <ImageView
+                android:id="@+id/loginHseImage"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="@dimen/login_hse_image_height"
+                android:layout_marginTop="@dimen/login_hse_image_margin_top"
+                android:contentDescription="@string/login_hse_image_desc"
+                android:src="@drawable/hse_logo"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/loginToggleButtonGroup"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/toggle_group_margin_top"
+                app:checkedButton="@+id/toggleButtonStudent"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@+id/loginHseImage"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/toggleButtonStudent"
+                    android:layout_width="@dimen/login_toggle_button_group_width"
+                    android:layout_height="@dimen/login_toggle_button_group_height"
+                    android:backgroundTint="@color/main_blue"
+                    android:text="@string/login_toggle_button_student"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/toggle_button_text_size"
+                    app:cornerRadius="@dimen/button_corner_radius"
+                    app:strokeColor="@color/main_blue"
+                    app:strokeWidth="@dimen/material_button_stroke_width" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/toggleButtonProfessor"
+                    android:layout_width="@dimen/login_toggle_button_group_width"
+                    android:layout_height="@dimen/login_toggle_button_group_height"
+                    android:backgroundTint="@color/white"
+                    android:text="@string/login_toggle_button_professor"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/toggle_button_text_size"
+                    app:cornerRadius="@dimen/button_corner_radius"
+                    app:strokeColor="@color/main_blue"
+                    app:strokeWidth="@dimen/material_button_stroke_width" />
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailTextInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/email_edit_text_margin_top"
+                app:boxStrokeColor="@color/main_blue"
+                app:boxStrokeErrorColor="@color/red"
+                app:hintTextColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/loginToggleButtonGroup">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/input_email_hint"
+                    android:text="@={loginFragmentViewModel.inputEmail}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/confirmEmailButton"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="@dimen/login_confirm_enter_email_button_height"
+                android:layout_marginTop="@dimen/login_confirm_email_button_margin_top"
+                android:backgroundTint="@color/main_blue"
+                android:onClick="@{()->loginFragmentViewModel.confirmEmail()}"
+                android:text="@string/confirm_email_button_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/big_button_text_size"
+                app:cornerRadius="@dimen/button_corner_radius"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/emailTextInput" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/codeTextInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/code_value_text_margin_top"
+                android:visibility="invisible"
+                app:boxStrokeColor="@color/main_blue"
+                app:boxStrokeErrorColor="@color/red"
+                app:hintTextColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/confirmEmailButton">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/codeEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/input_code_hint"
+                    android:text="@={loginFragmentViewModel.inputCode}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/loginButton"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="@dimen/login_confirm_enter_email_button_height"
+                android:layout_marginTop="@dimen/login_confirm_email_button_margin_top"
+                android:backgroundTint="@color/main_blue"
+                android:onClick="@{()->loginFragmentViewModel.login()}"
+                android:text="@string/code_email_button_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/big_button_text_size"
+                android:visibility="invisible"
+                app:cornerRadius="@dimen/button_corner_radius"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/codeTextInput" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

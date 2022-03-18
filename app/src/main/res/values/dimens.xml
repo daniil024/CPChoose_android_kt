@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    // Login dimens
+    <dimen name="guideline_m">20dp</dimen>
+
+    <dimen name="login_hse_image_margin_top">40dp</dimen>
+    <dimen name="login_hse_image_height">200dp</dimen>
+
+    <dimen name="zero_dp">0dp</dimen>
+    <dimen name="toggle_group_margin_top">60dp</dimen>
+    <dimen name="email_edit_text_margin_top">8dp</dimen>
+
+    <dimen name="login_toggle_button_group_width">120dp</dimen>
+    <dimen name="login_toggle_button_group_height">40dp</dimen>
+
+    <dimen name="login_confirm_email_button_margin_top">16dp</dimen>
+
+    <dimen name="login_confirm_enter_email_button_height">50dp</dimen>
+
+    <dimen name="toggle_button_text_size">8sp</dimen>
+
+    <dimen name="big_button_text_size">16sp</dimen>
+    <dimen name="button_corner_radius">16dp</dimen>
+
+    <dimen name="code_value_text_margin_top">40dp</dimen>
+
+    <dimen name="material_button_stroke_width">1dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fragment_horizontal_margin">16dp</dimen>
+    <dimen name="fragment_vertical_margin">16dp</dimen>
+
+    //
+</resources>
