@@ -5,12 +5,15 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class UserResponse(
+data class UserDTO(
     @SerialName("id")
     val id: Int?,
 
     @SerialName("email")
     val email: String?,
+
+    @SerialName("emailCode")
+    val code: String?,
 
     @SerialName("firstName")
     val firstName: String?,
@@ -25,8 +28,8 @@ data class UserResponse(
     val userType: UserType?,
 
     @SerialName("professor")
-    val professor: ProfessorResponse?,
+    val professor: ProfessorDTO?,
 
     @SerialName("student")
-    val student: StudentResponse?
+    val student: StudentDTO?
 )

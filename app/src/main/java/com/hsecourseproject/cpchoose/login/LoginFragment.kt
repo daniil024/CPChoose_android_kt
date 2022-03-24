@@ -1,20 +1,17 @@
 package com.hsecourseproject.cpchoose.login
 
-import android.opengl.Visibility
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.button.MaterialButtonToggleGroup
 import com.hsecourseproject.cpchoose.R
 import com.hsecourseproject.cpchoose.databinding.FragmentLoginBinding
-import com.hsecourseproject.cpchoose.login.models.UserResponse
-import com.hsecourseproject.cpchoose.login.network.LoginNetwork
-import kotlin.math.log
+import com.hsecourseproject.cpchoose.login.models.enums.UserType
 
 
 class LoginFragment : Fragment() {
@@ -43,7 +40,7 @@ class LoginFragment : Fragment() {
         binding.loginFragmentViewModel = loginViewModel
         binding.lifecycleOwner = this
 
-        setupView()
+        setupUX()
 
         return binding.root
         //return inflater.inflate(R.layout.fragment_login, container, false)
@@ -55,16 +52,16 @@ class LoginFragment : Fragment() {
 
     }
 
-    private fun setupView() {
-        loginViewModel.errorToastEmail.observe(this, Observer { hasError ->
+    private fun setupUX() {
+        loginViewModel.errorToastEmail.observe(viewLifecycleOwner) { hasError ->
             if (hasError) {
                 Toast.makeText(requireContext(), "Please check your e-mail", Toast.LENGTH_SHORT)
                     .show()
                 loginViewModel.doneToastEmail()
             }
-        })
+        }
 
-        loginViewModel.errorToastEmailDomain.observe(this, Observer { hasError ->
+        loginViewModel.errorToastEmailDomain.observe(viewLifecycleOwner) { hasError ->
             if (hasError) {
                 Toast.makeText(
                     requireContext(),
@@ -73,17 +70,17 @@ class LoginFragment : Fragment() {
                     .show()
                 loginViewModel.doneToastEmailDomain()
             }
-        })
+        }
 
-        loginViewModel.errorToastCode.observe(this, Observer { hasError ->
+        loginViewModel.errorToastCode.observe(viewLifecycleOwner) { hasError ->
             if (hasError) {
                 Toast.makeText(requireContext(), "Code is incorrect", Toast.LENGTH_LONG)
                     .show()
                 loginViewModel.doneToastCode()
             }
-        })
+        }
 
-        loginViewModel.navigateToFinish.observe(this, Observer { hasError ->
+        loginViewModel.navigateToFinish.observe(viewLifecycleOwner) { hasError ->
             if (hasError) {
                 Toast.makeText(requireContext(), "Good enough", Toast.LENGTH_LONG)
                     .show()
@@ -93,6 +90,53 @@ class LoginFragment : Fragment() {
 
                 loginViewModel.doneToastFinish()
             }
-        })
+        }
+
+        loginViewModel.errorToastCode.observe(viewLifecycleOwner) { hasError ->
+            if (hasError) {
+                Toast.makeText(requireContext(), "Code is incorrect", Toast.LENGTH_LONG).show()
+                loginViewModel.doneToastCode()
+            }
+        }
+
+        loginViewModel.professorButtonClicked.observe(viewLifecycleOwner) { isClicked ->
+            if (isClicked) {
+                binding.toggleButtonStudent.backgroundTintList = ContextCompat.getColorStateList(
+                    requireContext(), R.color.white
+                )
+                binding.toggleButtonProfessor.backgroundTintList = ContextCompat.getColorStateList(
+                    requireContext(), R.color.main_blue
+                )
+            }
+        }
+
+        loginViewModel.studentButtonClicked.observe(viewLifecycleOwner) { isClicked ->
+            if (isClicked) {
+                binding.toggleButtonProfessor.backgroundTintList = ContextCompat.getColorStateList(
+                    requireContext(), R.color.white
+                )
+                binding.toggleButtonStudent.backgroundTintList = ContextCompat.getColorStateList(
+                    requireContext(), R.color.main_blue
+                )
+            }
+        }
+
+        val tbg = binding.loginToggleButtonGroup
+        tbg.addOnButtonCheckedListener { _, checkedId, isChecked ->
+            if (isChecked) {
+                when (checkedId) {
+                    R.id.toggleButtonStudent -> {
+                        tbg.uncheck(R.id.toggleButtonProfessor)
+                        tbg.check(R.id.toggleButtonStudent)
+                    }
+                    R.id.toggleButtonProfessor -> {
+                        tbg.uncheck(R.id.toggleButtonStudent)
+                        tbg.check(R.id.toggleButtonProfessor)
+                    }
+                }
+            }
+        }
     }
+
+
 }

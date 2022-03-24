@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".login.LoginActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -50,7 +48,6 @@
                 android:layout_width="@dimen/zero_dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/toggle_group_margin_top"
-                app:checkedButton="@+id/toggleButtonStudent"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@+id/loginHseImage"
@@ -61,10 +58,11 @@
                     android:id="@+id/toggleButtonStudent"
                     android:layout_width="@dimen/login_toggle_button_group_width"
                     android:layout_height="@dimen/login_toggle_button_group_height"
-                    android:backgroundTint="@color/main_blue"
+                    android:onClick="@{loginFragmentViewModel.studentClicked}"
                     android:text="@string/login_toggle_button_student"
                     android:textColor="@color/black"
                     android:textSize="@dimen/toggle_button_text_size"
+                    app:backgroundTint="@color/main_blue"
                     app:cornerRadius="@dimen/button_corner_radius"
                     app:strokeColor="@color/main_blue"
                     app:strokeWidth="@dimen/material_button_stroke_width" />
@@ -73,10 +71,11 @@
                     android:id="@+id/toggleButtonProfessor"
                     android:layout_width="@dimen/login_toggle_button_group_width"
                     android:layout_height="@dimen/login_toggle_button_group_height"
-                    android:backgroundTint="@color/white"
+                    android:onClick="@{loginFragmentViewModel.professorClicked}"
                     android:text="@string/login_toggle_button_professor"
                     android:textColor="@color/black"
                     android:textSize="@dimen/toggle_button_text_size"
+                    app:backgroundTint="@color/white"
                     app:cornerRadius="@dimen/button_corner_radius"
                     app:strokeColor="@color/main_blue"
                     app:strokeWidth="@dimen/material_button_stroke_width" />
@@ -101,8 +100,9 @@
                     android:id="@+id/emailEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/input_email_hint"
-                    android:text="@={loginFragmentViewModel.inputEmail}" />
+                    android:hint="@string/input_email_hint_unfocused"
+                    android:text="@={loginFragmentViewModel.inputEmail}"
+                    app:onFocusChangeListener="@{loginFragmentViewModel.onFocusChange}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -140,8 +140,9 @@
                     android:id="@+id/codeEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/input_code_hint"
-                    android:text="@={loginFragmentViewModel.inputCode}" />
+                    android:hint="@string/input_code_hint_unfocused"
+                    android:text="@={loginFragmentViewModel.inputCode}"
+                    app:onFocusChangeListener="@{loginFragmentViewModel.onFocusChange}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 

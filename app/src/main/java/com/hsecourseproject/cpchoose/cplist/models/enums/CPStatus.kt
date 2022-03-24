@@ -1,4 +1,4 @@
-package com.hsecourseproject.cpchoose.login.models.enums
+package com.hsecourseproject.cpchoose.cplist.models.enums
 
 enum class CPStatus {
     CREATED,

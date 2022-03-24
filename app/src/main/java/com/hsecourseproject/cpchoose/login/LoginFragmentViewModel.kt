@@ -1,14 +1,18 @@
 package com.hsecourseproject.cpchoose.login
 
 import android.app.Application
-import android.util.Log
+import android.content.Context
+import android.view.View
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.material.textfield.TextInputLayout
+import com.hsecourseproject.cpchoose.R
 import com.hsecourseproject.cpchoose.login.LoginUtils.Companion.isEmailCorrect
-import com.hsecourseproject.cpchoose.login.models.UserResponse
+import com.hsecourseproject.cpchoose.login.models.UserDTO
+import com.hsecourseproject.cpchoose.login.models.enums.UserType
 import com.hsecourseproject.cpchoose.login.network.LoginNetwork
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,6 +26,8 @@ class LoginFragmentViewModel(application: Application) :
 
     @Bindable
     val inputCode = MutableLiveData<String>()
+
+    var userType = UserType.STUDENT
 
     private val _navigateToFinish = MutableLiveData<Boolean>()
 
@@ -43,8 +49,19 @@ class LoginFragmentViewModel(application: Application) :
     val errorToastCode: LiveData<Boolean>
         get() = _errorToastCode
 
+
+    private val _studentButtonClicked = MutableLiveData<Boolean>()
+
+    val studentButtonClicked: LiveData<Boolean>
+        get() = _studentButtonClicked
+
+    private val _professorButtonClicked = MutableLiveData<Boolean>()
+
+    val professorButtonClicked: LiveData<Boolean>
+        get() = _professorButtonClicked
+
+
     fun confirmEmail() {
-        // Logic for "Подтвердить почту" button
         if (inputEmail.value == null) {
             _errorToastEmail.value = true
         } else if (!isEmailCorrect(inputEmail.value!!)) {
@@ -52,46 +69,127 @@ class LoginFragmentViewModel(application: Application) :
         } else {
             val loginCPApiService = LoginNetwork.loginCPApiService
 
-//            val user = UserResponse(email = inputEmail.value, id = null, firstName = null,
-//            lastName = null, patronymic = null, userType = null, professor = null, student = null)
-            val user = "\"email\":\"dtsurkan@edu.hse.ru\""
+            val user = UserDTO(
+                email = inputEmail.value,
+                id = null,
+                firstName = null,
+                code = null,
+                lastName = null,
+                patronymic = null,
+                userType = userType,
+                professor = null,
+                student = null
+            )
+            _navigateToFinish.value = true
+
             loginCPApiService.saveUser(user).enqueue(
-                object : Callback<UserResponse>{
-                    override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                        Log.i("User_exc: ", "was an exc")
+                object : Callback<UserDTO> {
+                    override fun onFailure(call: Call<UserDTO>, t: Throwable) {
                         t.printStackTrace()
                     }
 
                     override fun onResponse(
-                        call: Call<UserResponse>,
-                        response: Response<UserResponse>
+                        call: Call<UserDTO>,
+                        response: Response<UserDTO>
                     ) {
-                        val userRes = response.body()
-                        Log.i("USER_RESPONSE:", userRes.toString())
-                        _navigateToFinish.value = true
+                        val userResponse = response.body()
+
+                        val sharedPreference = getApplication<Application>().getSharedPreferences(
+                            getApplication<Application>().getString(R.string.preference_file_key),
+                            Context.MODE_PRIVATE
+                        )
+                        val editor = sharedPreference.edit()
+                        val userEmail =
+                            getApplication<Application>().resources.getString(R.string.user_email)
+                        editor.putString(userEmail, userResponse?.email)
+                        val userType =
+                            getApplication<Application>().resources.getString(R.string.user_type)
+                        editor.putString(userType, userResponse?.userType?.name)
+                        editor.apply()
                     }
                 }
             )
         }
     }
 
+    fun onFocusChange(v: View, hasFocus: Boolean) {
+        val hintText: String
+        if (hasFocus) {
+            hintText = if (v.id == R.id.emailEditText)
+                getApplication<Application>().resources.getString(R.string.input_email_hint_focused)
+            else getApplication<Application>().resources.getString(R.string.input_code_hint_focused)
+
+            (v.parent.parent as TextInputLayout).hint = hintText
+        } else {
+            hintText = if (v.id == R.id.emailEditText)
+                getApplication<Application>().resources.getString(R.string.input_email_hint_unfocused)
+            else getApplication<Application>().resources.getString(R.string.input_code_hint_unfocused)
+            if (inputEmail.value.isNullOrEmpty() && v.id == R.id.emailEditText) {
+                (v.parent.parent as TextInputLayout).hint = hintText
+            } else if (inputCode.value.isNullOrEmpty() && v.id == R.id.codeEditText) {
+                (v.parent.parent as TextInputLayout).hint = hintText
+            }
+        }
+    }
+
     fun login() {
-        // Logic for "Войти" button
+        val loginCPApiService = LoginNetwork.loginCPApiService
+        val user = UserDTO(
+            email = inputEmail.value, id = null, firstName = null,
+            code = inputCode.value, lastName = null, patronymic = null,
+            userType = null, professor = null, student = null
+        )
+
+        loginCPApiService.checkCode(user).enqueue(
+            object : Callback<Boolean> {
+                override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                    val isCodeRight = response.body()
+                    if (isCodeRight!!) {
+                        val sharedPreference = getApplication<Application>().getSharedPreferences(
+                            getApplication<Application>().getString(R.string.preference_file_key),
+                            Context.MODE_PRIVATE
+                        )
+                        val editor = sharedPreference.edit()
+                        val loggedTag =
+                            getApplication<Application>().resources.getString(R.string.is_logged_in)
+                        editor.putBoolean(loggedTag, isCodeRight)
+                        editor.apply()
+                    } else {
+                        _errorToastCode.value = true
+                    }
+                }
+
+                override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                    t.printStackTrace()
+                }
+
+            }
+        )
+    }
+
+    fun professorClicked(v: View) {
+        _professorButtonClicked.value = true
+        userType = UserType.PROFESSOR
+    }
+
+    fun studentClicked(v: View) {
+        _studentButtonClicked.value = true
+        userType = UserType.STUDENT
     }
 
     fun doneToastEmail() {
         _errorToastEmail.value = false
     }
 
-    fun doneToastEmailDomain(){
+    fun doneToastEmailDomain() {
         _errorToastEmailDomain.value = false
     }
 
-    fun doneToastCode(){
+    fun doneToastCode() {
         _errorToastCode.value = false
     }
 
-    fun doneToastFinish(){
+    fun doneToastFinish() {
         _navigateToFinish.value = false
     }
 

@@ -1,24 +1,35 @@
 <resources>
     <string name="app_name">CP choose</string>
 
+    <!-- Strings related to login -->
     <string name="login_hse_image_desc">HSE logo</string>
 
     <string name="login_toggle_button_student">Студент</string>
     <string name="login_toggle_button_professor">Преподаватель</string>
 
-    <string name="input_email_hint">Введите почту домена hse.ru…</string>
+    <string name="input_email_hint_unfocused">Введите почту домена hse.ru…</string>
+    <string name="input_email_hint_focused">E-mail</string>
     <string name="confirm_email_button_text">Подтвердить почту</string>
-    <string name="input_code_hint">Введите код из письма…</string>
+    <string name="input_code_hint_unfocused">Введите код из письма…</string>
+    <string name="input_code_hint_focused">Code</string>
     <string name="code_email_button_text">Войти</string>
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome!"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+
+    <!-- Strings related to SharedPreferences -->
+    <string name="preference_file_key">com.hsecourseproject.cpchoose</string>
+    <string name="is_logged_in">com.hsecourseproject.cpchoose.is_logged_in</string>
+    <string name="user_email">com.hsecourseproject.cpchoose.user_email</string>
+    <string name="user_type">com.hsecourseproject.cpchoose.user_type</string>
+
+    <!-- Strings related to menu -->
+    <string name="cp_list_menu_item_title">Список КП</string>
+    <string name="create_cp_menu_item_title">Создать КП</string>
+    <string name="user_profile_menu_item_title">Профиль</string>
+
+    <!-- Strings related to cp_list -->
+    <string name="cp_full_list_button">Список</string>
+    <string name="cp_created_button">Созданные</string>
+    <string name="cp_proposed_button">Предложенные</string>
+    <string name="cp_mentor_prefix">Руководитель: </string>
 
 
 </resources>

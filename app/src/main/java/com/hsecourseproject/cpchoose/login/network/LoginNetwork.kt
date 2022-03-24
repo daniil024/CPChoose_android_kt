@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 object LoginNetwork {
 
-    private const val baseUrl = "http://localhost:8085/"
+    private const val baseUrl = "http://10.0.2.2:8080/"
 
     private val json = Json {
         prettyPrint = true

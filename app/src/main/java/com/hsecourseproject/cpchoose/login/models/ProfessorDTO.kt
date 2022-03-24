@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ProfessorResponse(
+data class ProfessorDTO(
     @SerialName("id")
     val id: Int,
 
