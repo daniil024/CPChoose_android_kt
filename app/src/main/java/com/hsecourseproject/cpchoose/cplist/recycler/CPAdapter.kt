@@ -8,13 +8,11 @@ import com.hsecourseproject.cpchoose.cplist.models.CourseProjectDTO
 
 class CPAdapter : RecyclerView.Adapter<CPViewHolder>() {
 
-    private var courseProjects = listOf<CourseProjectDTO>()
+    private var courseProjects: List<CourseProjectDTO> = listOf()
 
-    fun bindCourseProjects(courseProjects: List<CourseProjectDTO>) {
-        this.courseProjects = courseProjects
+    fun bindCourseProjects(cp: List<CourseProjectDTO>) {
+        this.courseProjects = cp
     }
-
-    private fun getItem(position: Int): CourseProjectDTO = courseProjects[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CPViewHolder {
         return CPViewHolder(
@@ -23,12 +21,14 @@ class CPAdapter : RecyclerView.Adapter<CPViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CPViewHolder, position: Int) {
-        holder.onBind(getItem(position))
+        holder.onBind(courseProjects[position])
     }
 
     override fun getItemCount(): Int = courseProjects.size
 
-
 }
 
+interface OnCPCardClickListener {
+    fun onCPCardClicked(courseProjectDTO: CourseProjectDTO)
+}
 

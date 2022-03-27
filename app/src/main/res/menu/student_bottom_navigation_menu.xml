@@ -15,6 +15,7 @@
         android:id="@+id/user_profile_menu_item"
         android:enabled="true"
         android:title="@string/user_profile_menu_item_title"
-        android:visible="false" />
+        android:icon="@drawable/ic_account_circle"
+        android:visible="true" />
 
 </menu>

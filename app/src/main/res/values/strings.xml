@@ -9,9 +9,12 @@
 
     <string name="input_email_hint_unfocused">Введите почту домена hse.ru…</string>
     <string name="input_email_hint_focused">E-mail</string>
+    <string name="input_email_null_error_message">Please input e-mail</string>
+    <string name="input_email_not_right_domain_error_message">E-mail must be in hse.ru domain</string>
     <string name="confirm_email_button_text">Подтвердить почту</string>
     <string name="input_code_hint_unfocused">Введите код из письма…</string>
     <string name="input_code_hint_focused">Code</string>
+    <string name="input_code_error_message">Code is incorrect</string>
     <string name="code_email_button_text">Войти</string>
 
     <!-- Strings related to SharedPreferences -->
@@ -19,6 +22,7 @@
     <string name="is_logged_in">com.hsecourseproject.cpchoose.is_logged_in</string>
     <string name="user_email">com.hsecourseproject.cpchoose.user_email</string>
     <string name="user_type">com.hsecourseproject.cpchoose.user_type</string>
+    <string name="user_id_from_db">com.hsecourseproject.cpchoose.user_id_from_db</string>
 
     <!-- Strings related to menu -->
     <string name="cp_list_menu_item_title">Список КП</string>

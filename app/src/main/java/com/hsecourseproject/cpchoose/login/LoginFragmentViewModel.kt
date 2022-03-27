@@ -14,6 +14,7 @@ import com.hsecourseproject.cpchoose.login.LoginUtils.Companion.isEmailCorrect
 import com.hsecourseproject.cpchoose.login.models.UserDTO
 import com.hsecourseproject.cpchoose.login.models.enums.UserType
 import com.hsecourseproject.cpchoose.login.network.LoginNetwork
+import com.hsecourseproject.cpchoose.utils.UtilsSingleton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -94,10 +95,13 @@ class LoginFragmentViewModel(application: Application) :
                     ) {
                         val userResponse = response.body()
 
+                        UtilsSingleton.init(getApplication())
+
                         val sharedPreference = getApplication<Application>().getSharedPreferences(
                             getApplication<Application>().getString(R.string.preference_file_key),
                             Context.MODE_PRIVATE
                         )
+
                         val editor = sharedPreference.edit()
                         val userEmail =
                             getApplication<Application>().resources.getString(R.string.user_email)
@@ -106,6 +110,8 @@ class LoginFragmentViewModel(application: Application) :
                             getApplication<Application>().resources.getString(R.string.user_type)
                         editor.putString(userType, userResponse?.userType?.name)
                         editor.apply()
+
+                        UtilsSingleton.INSTANCE.writeUserId(userResponse?.id ?: 0)
                     }
                 }
             )

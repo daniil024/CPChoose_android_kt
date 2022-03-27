@@ -33,10 +33,11 @@
     <!-- Screen margins for cp_list -->
     <dimen name="cp_list_toggle_button_group_margin_top">4dp</dimen>
     <dimen name="cp_list_toggle_button_group_width">110dp</dimen>
+    <dimen name="cp_list_recycler_view_item_padding">4dp</dimen>
 
     <!-- Screen margins for cp_card -->
-    <dimen name="cp_card_title_text_size">12sp</dimen>
-    <dimen name="cp_card_status_text_size">14sp</dimen>
+    <dimen name="cp_card_title_text_size">16sp</dimen>
+    <dimen name="cp_card_status_text_size">16sp</dimen>
     <dimen name="cp_card_corner_radius">8dp</dimen>
     <dimen name="cp_card_guideline_margin">8dp</dimen>
 

@@ -12,7 +12,7 @@ class LoginUtils {
                     "hse\\.ru")
 
         fun isEmailCorrect(email: String): Boolean {
-            val pattern:Pattern = LoginUtils.EMAIL_ADDRESS
+            val pattern:Pattern = EMAIL_ADDRESS
             return pattern.matcher(email).matches()
         }
     }

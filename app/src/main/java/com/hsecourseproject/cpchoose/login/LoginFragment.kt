@@ -55,9 +55,14 @@ class LoginFragment : Fragment() {
     private fun setupUX() {
         loginViewModel.errorToastEmail.observe(viewLifecycleOwner) { hasError ->
             if (hasError) {
-                Toast.makeText(requireContext(), "Please check your e-mail", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.input_email_null_error_message),
+                    Toast.LENGTH_SHORT
+                )
                     .show()
                 loginViewModel.doneToastEmail()
+                binding.emailTextInput.error = getString(R.string.input_email_null_error_message)
             }
         }
 
@@ -65,18 +70,21 @@ class LoginFragment : Fragment() {
             if (hasError) {
                 Toast.makeText(
                     requireContext(),
-                    "E-mail must be in hse.ru domain", Toast.LENGTH_SHORT
+                    getString(R.string.input_email_not_right_domain_error_message),
+                    Toast.LENGTH_SHORT
                 )
                     .show()
                 loginViewModel.doneToastEmailDomain()
+                binding.emailTextInput.error =
+                    getString(R.string.input_email_not_right_domain_error_message)
             }
         }
 
         loginViewModel.errorToastCode.observe(viewLifecycleOwner) { hasError ->
             if (hasError) {
-                Toast.makeText(requireContext(), "Code is incorrect", Toast.LENGTH_LONG)
-                    .show()
+                Toast.makeText(requireContext(), "Code is incorrect", Toast.LENGTH_LONG).show()
                 loginViewModel.doneToastCode()
+                binding.codeTextInput.error = getString(R.string.input_code_error_message)
             }
         }
 
@@ -86,16 +94,9 @@ class LoginFragment : Fragment() {
                     .show()
                 binding.codeTextInput.visibility = View.VISIBLE
                 binding.loginButton.visibility = View.VISIBLE
-
+                binding.emailTextInput.isErrorEnabled = false
 
                 loginViewModel.doneToastFinish()
-            }
-        }
-
-        loginViewModel.errorToastCode.observe(viewLifecycleOwner) { hasError ->
-            if (hasError) {
-                Toast.makeText(requireContext(), "Code is incorrect", Toast.LENGTH_LONG).show()
-                loginViewModel.doneToastCode()
             }
         }
 
@@ -137,6 +138,5 @@ class LoginFragment : Fragment() {
             }
         }
     }
-
 
 }

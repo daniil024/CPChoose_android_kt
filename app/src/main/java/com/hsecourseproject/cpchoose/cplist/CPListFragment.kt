@@ -1,22 +1,32 @@
 package com.hsecourseproject.cpchoose.cplist
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hsecourseproject.cpchoose.R
 import com.hsecourseproject.cpchoose.cplist.models.CourseProjectDTO
 import com.hsecourseproject.cpchoose.cplist.models.enums.CPMode
 import com.hsecourseproject.cpchoose.cplist.models.enums.CPStatus
 import com.hsecourseproject.cpchoose.cplist.models.enums.CPType
+import com.hsecourseproject.cpchoose.cplist.network.CPNetwork
 import com.hsecourseproject.cpchoose.cplist.recycler.CPAdapter
+import com.hsecourseproject.cpchoose.cplist.recycler.CPItemDecoration
+import com.hsecourseproject.cpchoose.cplist.recycler.OnCPCardClickListener
 import com.hsecourseproject.cpchoose.databinding.CpListFragmentBinding
-import com.hsecourseproject.cpchoose.databinding.FragmentLoginBinding
+import com.hsecourseproject.cpchoose.login.models.enums.UserType
+import com.hsecourseproject.cpchoose.utils.UtilsSingleton
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class CPListFragment : Fragment() {
+class CPListFragment : Fragment(), OnCPCardClickListener {
 
     companion object {
         fun newInstance() = CPListFragment()
@@ -32,54 +42,47 @@ class CPListFragment : Fragment() {
 
     private var recycler: RecyclerView? = null
 
+    private var adapter: CPAdapter? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = CpListFragmentBinding.inflate(inflater, container, false)
 
         cpListViewModel = ViewModelProvider(this)[CPListViewModel::class.java]
 
-        recycler = binding.cpListRecycler
-        val cp = listOf(
-            CourseProjectDTO(
-                id = null,
-                userId = null,
-                titleRus = "Android-app for course project topics distribution\n",
-                titleEng = null,
-                type = CPType.PROGRAM,
-                mode = CPMode.COMMAND,
-                membersCount = null,
-                projectInitiator = null,
-                companySubdivision = null,
-                mentorFullName = "Сосновский Г. М.",
-                annotation = "Android-приложение будет служить для поиска, выбора и добавления курсовых\n" +
-                        "проектов преподавателями и студентами, а также для последующего генерирования\n" +
-                        "необходимой документации, предоставляемой в качестве сопутствующих документов. Приложение...",
-                projectGoal = null,
-                projectTasks = null,
-                participantsTasks = null,
-                projectResults = null,
-                additionalInfo = null,
-                workPlace = null,
-                studentsRequirements = null,
-                contacts = null,
-                startDate = null,
-                finishDate = null,
-                selectionForm = null,
-                evaluationCriteria = null,
-                status = CPStatus.APPROVED
-            )
-        )
-
-        recycler?.adapter = CPAdapter()
-        //updateData(cp)
-
-        (recycler?.adapter as? CPAdapter)?.apply {
-            bindCourseProjects(cp)
+        activity?.application?.let { UtilsSingleton.init(it) }
+        if (UtilsSingleton.INSTANCE.getUserType() == UserType.STUDENT) {
+            binding.proposedToUser.visibility = View.GONE
+            binding.bottomNavigation.menu.findItem(R.id.user_profile_menu_item).isVisible = false
         }
 
-        return inflater.inflate(R.layout.cp_list_fragment, container, false)
+        recycler = binding.cpListRecycler
+        cpListViewModel.getAllAvailableCP()
+        adapter = CPAdapter()
+        recycler?.adapter = adapter
+
+        recycler?.layoutManager = LinearLayoutManager(requireContext())
+
+        //recycler?.addItemDecoration(CPItemDecoration(R.dimen.cp_list_recycler_view_item_padding))
+
+        recycler?.apply {
+//            addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
+            addItemDecoration(
+                CPItemDecoration(
+                    requireContext().resources.getDimension(R.dimen.cp_list_recycler_view_item_padding)
+                        .toInt()
+                )
+            )
+        }
+
+        cpListViewModel.cpData.observe(viewLifecycleOwner) { data ->
+            if (data != null && data.isNotEmpty())
+                updateData(data)
+        }
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -94,6 +97,18 @@ class CPListFragment : Fragment() {
     private fun updateData(cp: List<CourseProjectDTO>) {
         (recycler?.adapter as? CPAdapter)?.apply {
             bindCourseProjects(cp)
+            adapter?.notifyDataSetChanged()
         }
     }
+
+    override fun onCPCardClicked(courseProjectDTO: CourseProjectDTO) {
+        // TODO: call new intent to open card detailed info
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        recycler = null
+        adapter = null
+    }
+
 }
