@@ -15,6 +15,7 @@ object LoginNetwork {
     private val json = Json {
         prettyPrint = true
         ignoreUnknownKeys = true
+        coerceInputValues = true
     }
 
     private val contentType = "application/json".toMediaType()

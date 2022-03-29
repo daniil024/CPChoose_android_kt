@@ -27,20 +27,61 @@ class UtilsSingleton private constructor(private val application: Application) {
         }
     }
 
-    fun getUserType(): UserType? {
-        val sharedPreference =
-            application.getSharedPreferences(
-                application.getString(R.string.preference_file_key),
-                Context.MODE_PRIVATE
-            )
-        return sharedPreference.getString(application.getString(R.string.user_type), "")
-            ?.let { UserType.valueOf(it) }
-    }
 
-    fun writeUserId(id: Int) {
+    fun setUserId(id: Int) {
         val editor = sharedPreference.edit()
         val userId = application.resources.getString(R.string.user_id_from_db)
         editor.putInt(userId, id)
         editor.apply()
     }
+
+    fun getUserId(): Int {
+        return sharedPreference.getInt(application.getString(R.string.user_id_from_db), 0)
+    }
+
+    fun setUserStudentId(studentId: Int) {
+        val editor = sharedPreference.edit()
+        val studentIdVar = application.resources.getString(R.string.user_student_id)
+        editor.putInt(studentIdVar, studentId)
+        editor.apply()
+    }
+
+    fun getUserStudentId(): Int {
+        return sharedPreference.getInt(application.getString(R.string.user_student_id), 0)
+    }
+
+    fun setUserProfessorId(professorId: Int) {
+        val editor = sharedPreference.edit()
+        val professorIdVar = application.resources.getString(R.string.user_professor_id)
+        editor.putInt(professorIdVar, professorId)
+        editor.apply()
+    }
+
+    fun getUserProfessorId(): Int {
+        return sharedPreference.getInt(application.getString(R.string.user_professor_id), 0)
+    }
+
+    fun setUserEmail(email: String) {
+        val editor = sharedPreference.edit()
+        val userEmailVar = application.resources.getString(R.string.user_email)
+        editor.putString(userEmailVar, email)
+        editor.apply()
+    }
+
+    fun getUserEmail(): String? {
+        return sharedPreference.getString(application.getString(R.string.user_email), "")
+    }
+
+    fun setUserType(userType: UserType) {
+        val editor = sharedPreference.edit()
+        val userTypeVar = application.resources.getString(R.string.user_type)
+        editor.putString(userTypeVar, userType.name)
+        editor.apply()
+    }
+
+    fun getUserType(): UserType? {
+        return sharedPreference.getString(application.getString(R.string.user_type), "")
+            ?.let { UserType.valueOf(it) }
+    }
+
 }

@@ -34,12 +34,19 @@
     <dimen name="cp_list_toggle_button_group_margin_top">4dp</dimen>
     <dimen name="cp_list_toggle_button_group_width">110dp</dimen>
     <dimen name="cp_list_recycler_view_item_padding">4dp</dimen>
+    <dimen name="cp_list_recycler_view_padding_bottom">110dp</dimen>
 
     <!-- Screen margins for cp_card -->
     <dimen name="cp_card_title_text_size">16sp</dimen>
     <dimen name="cp_card_status_text_size">16sp</dimen>
     <dimen name="cp_card_corner_radius">8dp</dimen>
     <dimen name="cp_card_guideline_margin">8dp</dimen>
+
+    <!-- Screen margins and textSize for create_cp -->
+    <dimen name="create_cp_guideline_margin">16dp</dimen>
+    <dimen name="create_cp_screen_title_text_size">22sp</dimen>
+    <dimen name="create_cp_screen_margin_top">8dp</dimen>
+    <dimen name="create_cp_default_items_margin">4dp</dimen>
 
 
 </resources>

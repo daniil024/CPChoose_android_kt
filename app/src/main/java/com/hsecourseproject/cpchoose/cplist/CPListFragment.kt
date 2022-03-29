@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
 import com.hsecourseproject.cpchoose.R
 import com.hsecourseproject.cpchoose.cplist.models.CourseProjectDTO
 import com.hsecourseproject.cpchoose.cplist.models.enums.CPMode
@@ -59,7 +61,9 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
         }
 
         recycler = binding.cpListRecycler
+
         cpListViewModel.getAllAvailableCP()
+
         adapter = CPAdapter()
         recycler?.adapter = adapter
 
@@ -77,8 +81,10 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
             )
         }
 
-        cpListViewModel.cpData.observe(viewLifecycleOwner) { data ->
-            if (data != null && data.isNotEmpty())
+        setupTBG()
+
+        cpListViewModel.cpListData.observe(viewLifecycleOwner) { data ->
+            if (data != null /*&& data.isNotEmpty()*/)
                 updateData(data)
         }
 
@@ -92,6 +98,48 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         // TODO: Use the ViewModel
+    }
+
+    private fun setupTBG() {
+        binding.listSwitcherButtonToggleGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
+            if (isChecked) {
+                when (checkedId) {
+                    R.id.cpFullList -> {
+                        cpListViewModel.getAllAvailableCP()
+                        checkButtons(R.id.cpFullList)
+                        colorButtons(binding.cpFullList)
+                    }
+                    R.id.createdByUser -> {
+                        cpListViewModel.getCPCreatedByUser()
+                        checkButtons(R.id.createdByUser)
+                        colorButtons(binding.createdByUser)
+                    }
+                    R.id.proposedToUser -> {
+                        checkButtons(R.id.proposedToUser)
+                        colorButtons(binding.proposedToUser)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun checkButtons(check: Int) {
+        val tbg = binding.listSwitcherButtonToggleGroup
+        tbg.clearChecked()
+        tbg.check(check)
+    }
+
+    private fun colorButtons(colored: MaterialButton) {
+        val whiteColor = ContextCompat.getColorStateList(
+            requireContext(), R.color.white
+        )
+        binding.proposedToUser.backgroundTintList = whiteColor
+        binding.createdByUser.backgroundTintList = whiteColor
+        binding.cpFullList.backgroundTintList = whiteColor
+
+        colored.backgroundTintList = ContextCompat.getColorStateList(
+            requireContext(), R.color.main_blue
+        )
     }
 
     private fun updateData(cp: List<CourseProjectDTO>) {

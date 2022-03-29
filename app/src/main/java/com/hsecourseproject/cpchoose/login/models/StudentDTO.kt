@@ -6,14 +6,14 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class StudentDTO(
     @SerialName("id")
-    val id: Int,
+    val id: Int?,
 
     @SerialName("faculty")
-    val faculty: String,
+    val faculty: String?,
 
     @SerialName("speciality")
-    val speciality: String,
+    val speciality: String?,
 
     @SerialName("yearOfStudy")
-    val yearOfStudy: Int,
+    val yearOfStudy: Int?,
 )

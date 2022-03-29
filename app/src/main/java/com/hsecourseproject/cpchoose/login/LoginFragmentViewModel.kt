@@ -2,6 +2,7 @@ package com.hsecourseproject.cpchoose.login
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import android.view.View
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
@@ -28,7 +29,7 @@ class LoginFragmentViewModel(application: Application) :
     @Bindable
     val inputCode = MutableLiveData<String>()
 
-    var userType = UserType.STUDENT
+    private var userType = UserType.STUDENT
 
     private val _navigateToFinish = MutableLiveData<Boolean>()
 
@@ -68,52 +69,51 @@ class LoginFragmentViewModel(application: Application) :
         } else if (!isEmailCorrect(inputEmail.value!!)) {
             _errorToastEmailDomain.value = true
         } else {
-            val loginCPApiService = LoginNetwork.loginCPApiService
-
-            val user = UserDTO(
-                email = inputEmail.value,
-                id = null,
-                firstName = null,
-                code = null,
-                lastName = null,
-                patronymic = null,
-                userType = userType,
-                professor = null,
-                student = null
-            )
             _navigateToFinish.value = true
+            saveUserRequest()
+        }
+    }
 
-            loginCPApiService.saveUser(user).enqueue(
-                object : Callback<UserDTO> {
-                    override fun onFailure(call: Call<UserDTO>, t: Throwable) {
-                        t.printStackTrace()
-                    }
+    private fun saveUserRequest() {
+        val user = UserDTO(
+            email = inputEmail.value,
+            id = null,
+            firstName = null,
+            code = null,
+            lastName = null,
+            patronymic = null,
+            userType = userType,
+            professor = null,
+            student = null
+        )
 
-                    override fun onResponse(
-                        call: Call<UserDTO>,
-                        response: Response<UserDTO>
-                    ) {
-                        val userResponse = response.body()
+        val loginCPApiService = LoginNetwork.loginCPApiService
 
-                        UtilsSingleton.init(getApplication())
-
-                        val sharedPreference = getApplication<Application>().getSharedPreferences(
-                            getApplication<Application>().getString(R.string.preference_file_key),
-                            Context.MODE_PRIVATE
-                        )
-
-                        val editor = sharedPreference.edit()
-                        val userEmail =
-                            getApplication<Application>().resources.getString(R.string.user_email)
-                        editor.putString(userEmail, userResponse?.email)
-                        val userType =
-                            getApplication<Application>().resources.getString(R.string.user_type)
-                        editor.putString(userType, userResponse?.userType?.name)
-                        editor.apply()
-
-                        UtilsSingleton.INSTANCE.writeUserId(userResponse?.id ?: 0)
-                    }
+        loginCPApiService.saveUser(user).enqueue(
+            object : Callback<UserDTO> {
+                override fun onFailure(call: Call<UserDTO>, t: Throwable) {
+                    t.printStackTrace()
                 }
+
+                override fun onResponse(call: Call<UserDTO>, response: Response<UserDTO>) {
+                    Log.i("my_tag", response.body().toString())
+                    val userResponse = response.body()
+                    saveUserData(userResponse)
+                }
+            }
+        )
+    }
+
+    private fun saveUserData(userResponse: UserDTO?) {
+        UtilsSingleton.init(getApplication())
+        UtilsSingleton.INSTANCE.setUserEmail(userResponse?.email!!)
+        UtilsSingleton.INSTANCE.setUserType(userResponse.userType!!)
+        UtilsSingleton.INSTANCE.setUserId(userResponse.id ?: 0)
+        if (userResponse.userType == UserType.STUDENT) {
+            UtilsSingleton.INSTANCE.setUserStudentId(userResponse.student?.id ?: 0)
+        } else {
+            UtilsSingleton.INSTANCE.setUserProfessorId(
+                userResponse.professor?.id ?: 0
             )
         }
     }

@@ -15,10 +15,11 @@
 
 
         <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/list_switcher_button_toggle_group"
+            android:id="@+id/listSwitcherButtonToggleGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/cp_list_toggle_button_group_margin_top"
+            app:checkedButton="@+id/cpFullList"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,7 +30,6 @@
                 android:id="@+id/cpFullList"
                 android:layout_width="@dimen/cp_list_toggle_button_group_width"
                 android:layout_height="@dimen/login_toggle_button_group_height"
-                android:onClick="@{cpListViewModel.onFullListClicked}"
                 android:text="@string/cp_full_list_button"
                 android:textColor="@color/black"
                 android:textSize="@dimen/toggle_button_text_size"
@@ -42,7 +42,6 @@
                 android:id="@+id/createdByUser"
                 android:layout_width="@dimen/cp_list_toggle_button_group_width"
                 android:layout_height="@dimen/login_toggle_button_group_height"
-                android:onClick="@{cpListViewModel.onCreatedListClicked}"
                 android:text="@string/cp_created_button"
                 android:textColor="@color/black"
                 android:textSize="@dimen/toggle_button_text_size"
@@ -55,7 +54,6 @@
                 android:id="@+id/proposedToUser"
                 android:layout_width="@dimen/cp_list_toggle_button_group_width"
                 android:layout_height="@dimen/login_toggle_button_group_height"
-                android:onClick="@{cpListViewModel.onProposedListClicked}"
                 android:text="@string/cp_proposed_button"
                 android:textColor="@color/black"
                 android:textSize="@dimen/toggle_button_text_size"
@@ -71,11 +69,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
+            android:paddingBottom="@dimen/cp_list_recycler_view_padding_bottom"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/list_switcher_button_toggle_group" />
+            app:layout_constraintTop_toBottomOf="@+id/listSwitcherButtonToggleGroup" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottom_navigation"
+            android:id="@+id/bottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

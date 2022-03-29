@@ -23,6 +23,8 @@
     <string name="user_email">com.hsecourseproject.cpchoose.user_email</string>
     <string name="user_type">com.hsecourseproject.cpchoose.user_type</string>
     <string name="user_id_from_db">com.hsecourseproject.cpchoose.user_id_from_db</string>
+    <string name="user_professor_id">com.hsecourseproject.cpchoose.user_professor_id</string>
+    <string name="user_student_id">com.hsecourseproject.cpchoose.user_student_id</string>
 
     <!-- Strings related to menu -->
     <string name="cp_list_menu_item_title">Список КП</string>
@@ -34,6 +36,9 @@
     <string name="cp_created_button">Созданные</string>
     <string name="cp_proposed_button">Предложенные</string>
     <string name="cp_mentor_prefix">Руководитель: </string>
+
+    <!-- Strings related to create_cp -->
+    <string name="create_cp_screen_title">Описание проекта для студентов ФКН НИУ ВШЭ</string>
 
 
 </resources>
