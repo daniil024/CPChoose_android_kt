@@ -1,9 +1,8 @@
 package com.hsecourseproject.cpchoose.cplist
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -13,20 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.hsecourseproject.cpchoose.R
-import com.hsecourseproject.cpchoose.cplist.models.CourseProjectDTO
-import com.hsecourseproject.cpchoose.cplist.models.enums.CPMode
-import com.hsecourseproject.cpchoose.cplist.models.enums.CPStatus
-import com.hsecourseproject.cpchoose.cplist.models.enums.CPType
-import com.hsecourseproject.cpchoose.cplist.network.CPNetwork
+import com.hsecourseproject.cpchoose.models.CourseProjectDTO
 import com.hsecourseproject.cpchoose.cplist.recycler.CPAdapter
 import com.hsecourseproject.cpchoose.cplist.recycler.CPItemDecoration
 import com.hsecourseproject.cpchoose.cplist.recycler.OnCPCardClickListener
 import com.hsecourseproject.cpchoose.databinding.CpListFragmentBinding
-import com.hsecourseproject.cpchoose.login.models.enums.UserType
+import com.hsecourseproject.cpchoose.models.enums.UserType
 import com.hsecourseproject.cpchoose.utils.UtilsSingleton
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class CPListFragment : Fragment(), OnCPCardClickListener {
 
@@ -51,22 +43,35 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = CpListFragmentBinding.inflate(inflater, container, false)
-
         cpListViewModel = ViewModelProvider(this)[CPListViewModel::class.java]
+        binding.cpListViewModel = cpListViewModel
+        binding.lifecycleOwner = this
 
-        activity?.application?.let { UtilsSingleton.init(it) }
         if (UtilsSingleton.INSTANCE.getUserType() == UserType.STUDENT) {
             binding.proposedToUser.visibility = View.GONE
             binding.bottomNavigation.menu.findItem(R.id.user_profile_menu_item).isVisible = false
         }
 
+        setupTBG()
+
+        cpListViewModel.cpListData.observe(viewLifecycleOwner) { data ->
+            if (data != null)
+                updateData(data)
+        }
+
+        return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupRecycler()
+        binding.cpFullList.callOnClick()
+    }
+
+    private fun setupRecycler() {
         recycler = binding.cpListRecycler
-
-        cpListViewModel.getAllAvailableCP()
-
         adapter = CPAdapter()
         recycler?.adapter = adapter
-
         recycler?.layoutManager = LinearLayoutManager(requireContext())
 
         //recycler?.addItemDecoration(CPItemDecoration(R.dimen.cp_list_recycler_view_item_padding))
@@ -80,45 +85,27 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
                 )
             )
         }
-
-        setupTBG()
-
-        cpListViewModel.cpListData.observe(viewLifecycleOwner) { data ->
-            if (data != null /*&& data.isNotEmpty()*/)
-                updateData(data)
-        }
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
     }
 
     private fun setupTBG() {
-        binding.listSwitcherButtonToggleGroup.addOnButtonCheckedListener { _, checkedId, isChecked ->
-            if (isChecked) {
-                when (checkedId) {
-                    R.id.cpFullList -> {
-                        cpListViewModel.getAllAvailableCP()
-                        checkButtons(R.id.cpFullList)
-                        colorButtons(binding.cpFullList)
-                    }
-                    R.id.createdByUser -> {
-                        cpListViewModel.getCPCreatedByUser()
-                        checkButtons(R.id.createdByUser)
-                        colorButtons(binding.createdByUser)
-                    }
-                    R.id.proposedToUser -> {
-                        checkButtons(R.id.proposedToUser)
-                        colorButtons(binding.proposedToUser)
-                    }
-                }
+        cpListViewModel.cpFullList.observe(viewLifecycleOwner) { isClicked ->
+            if (isClicked) {
+                checkButtons(R.id.cpFullList)
+                colorButtons(binding.cpFullList)
+            }
+        }
+
+        cpListViewModel.cpCreatedByUser.observe(viewLifecycleOwner) { isClicked ->
+            if (isClicked) {
+                checkButtons(R.id.createdByUser)
+                colorButtons(binding.createdByUser)
+            }
+        }
+
+        cpListViewModel.cpProposedToProfessor.observe(viewLifecycleOwner) { isClicked ->
+            if (isClicked) {
+                checkButtons(R.id.proposedToUser)
+                colorButtons(binding.proposedToUser)
             }
         }
     }
@@ -142,6 +129,7 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
         )
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun updateData(cp: List<CourseProjectDTO>) {
         (recycler?.adapter as? CPAdapter)?.apply {
             bindCourseProjects(cp)

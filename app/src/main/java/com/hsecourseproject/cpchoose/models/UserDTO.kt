@@ -1,6 +1,6 @@
-package com.hsecourseproject.cpchoose.login.models
+package com.hsecourseproject.cpchoose.models
 
-import com.hsecourseproject.cpchoose.login.models.enums.UserType
+import com.hsecourseproject.cpchoose.models.enums.UserType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

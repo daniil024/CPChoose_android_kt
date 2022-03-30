@@ -1,8 +1,8 @@
-package com.hsecourseproject.cpchoose.cplist.models
+package com.hsecourseproject.cpchoose.models
 
-import com.hsecourseproject.cpchoose.cplist.models.enums.CPMode
-import com.hsecourseproject.cpchoose.cplist.models.enums.CPStatus
-import com.hsecourseproject.cpchoose.cplist.models.enums.CPType
+import com.hsecourseproject.cpchoose.models.enums.CPMode
+import com.hsecourseproject.cpchoose.models.enums.CPStatus
+import com.hsecourseproject.cpchoose.models.enums.CPType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

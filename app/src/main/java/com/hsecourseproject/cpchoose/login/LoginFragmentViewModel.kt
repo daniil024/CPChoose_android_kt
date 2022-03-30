@@ -2,7 +2,6 @@ package com.hsecourseproject.cpchoose.login
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import android.view.View
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
@@ -12,9 +11,9 @@ import androidx.lifecycle.MutableLiveData
 import com.google.android.material.textfield.TextInputLayout
 import com.hsecourseproject.cpchoose.R
 import com.hsecourseproject.cpchoose.login.LoginUtils.Companion.isEmailCorrect
-import com.hsecourseproject.cpchoose.login.models.UserDTO
-import com.hsecourseproject.cpchoose.login.models.enums.UserType
 import com.hsecourseproject.cpchoose.login.network.LoginNetwork
+import com.hsecourseproject.cpchoose.models.UserDTO
+import com.hsecourseproject.cpchoose.models.enums.UserType
 import com.hsecourseproject.cpchoose.utils.UtilsSingleton
 import retrofit2.Call
 import retrofit2.Callback
@@ -50,7 +49,6 @@ class LoginFragmentViewModel(application: Application) :
 
     val errorToastCode: LiveData<Boolean>
         get() = _errorToastCode
-
 
     private val _studentButtonClicked = MutableLiveData<Boolean>()
 
@@ -96,16 +94,14 @@ class LoginFragmentViewModel(application: Application) :
                 }
 
                 override fun onResponse(call: Call<UserDTO>, response: Response<UserDTO>) {
-                    Log.i("my_tag", response.body().toString())
-                    val userResponse = response.body()
-                    saveUserData(userResponse)
+                    saveUserData(response.body())
                 }
             }
         )
     }
 
     private fun saveUserData(userResponse: UserDTO?) {
-        UtilsSingleton.init(getApplication())
+//        UtilsSingleton.init(getApplication())
         UtilsSingleton.INSTANCE.setUserEmail(userResponse?.email!!)
         UtilsSingleton.INSTANCE.setUserType(userResponse.userType!!)
         UtilsSingleton.INSTANCE.setUserId(userResponse.id ?: 0)
@@ -173,12 +169,12 @@ class LoginFragmentViewModel(application: Application) :
         )
     }
 
-    fun professorClicked(v: View) {
+    fun professorClicked() {
         _professorButtonClicked.value = true
         userType = UserType.PROFESSOR
     }
 
-    fun studentClicked(v: View) {
+    fun studentClicked() {
         _studentButtonClicked.value = true
         userType = UserType.STUDENT
     }

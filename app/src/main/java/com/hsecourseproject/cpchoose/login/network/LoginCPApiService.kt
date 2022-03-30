@@ -1,6 +1,6 @@
 package com.hsecourseproject.cpchoose.login.network
 
-import com.hsecourseproject.cpchoose.login.models.UserDTO
+import com.hsecourseproject.cpchoose.models.UserDTO
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Headers
@@ -11,11 +11,11 @@ interface LoginCPApiService {
     @Headers("Content-Type: application/json")
     @POST("saveUser")
     fun saveUser(
-        @Body user:UserDTO
+        @Body user: UserDTO
     ): Call<UserDTO>
 
     @POST("checkCode")
     fun checkCode(
-        @Body user:UserDTO
+        @Body user: UserDTO
     ): Call<Boolean>
 }

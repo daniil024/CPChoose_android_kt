@@ -36,7 +36,8 @@
                 app:backgroundTint="@color/main_blue"
                 app:cornerRadius="@dimen/button_corner_radius"
                 app:strokeColor="@color/main_blue"
-                app:strokeWidth="@dimen/material_button_stroke_width" />
+                app:strokeWidth="@dimen/material_button_stroke_width"
+                android:onClick="@{()->cpListViewModel.onFullListClicked()}"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/createdByUser"
@@ -48,7 +49,8 @@
                 app:backgroundTint="@color/white"
                 app:cornerRadius="@dimen/button_corner_radius"
                 app:strokeColor="@color/main_blue"
-                app:strokeWidth="@dimen/material_button_stroke_width" />
+                app:strokeWidth="@dimen/material_button_stroke_width"
+                android:onClick="@{()->cpListViewModel.onCreatedListClicked()}"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/proposedToUser"
@@ -60,7 +62,8 @@
                 app:backgroundTint="@color/white"
                 app:cornerRadius="@dimen/button_corner_radius"
                 app:strokeColor="@color/main_blue"
-                app:strokeWidth="@dimen/material_button_stroke_width" />
+                app:strokeWidth="@dimen/material_button_stroke_width"
+                android:onClick="@{()->cpListViewModel.onProposedListClicked()}"/>
 
         </com.google.android.material.button.MaterialButtonToggleGroup>
 

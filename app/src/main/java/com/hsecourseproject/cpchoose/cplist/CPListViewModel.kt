@@ -1,16 +1,12 @@
 package com.hsecourseproject.cpchoose.cplist
 
 import android.app.Application
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.databinding.Observable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.android.material.button.MaterialButtonToggleGroup
-import com.hsecourseproject.cpchoose.R
-import com.hsecourseproject.cpchoose.cplist.models.ApprovedCPDTO
-import com.hsecourseproject.cpchoose.cplist.models.CourseProjectDTO
+import com.hsecourseproject.cpchoose.models.ApprovedCPDTO
+import com.hsecourseproject.cpchoose.models.CourseProjectDTO
 import com.hsecourseproject.cpchoose.cplist.network.CPNetwork
 import com.hsecourseproject.cpchoose.utils.UtilsSingleton
 import retrofit2.Call
@@ -35,10 +31,10 @@ class CPListViewModel(application: Application) : AndroidViewModel(application),
     val cpCreatedByUserData: LiveData<List<CourseProjectDTO>>
         get() = _cpCreatedByUserData
 
-    private val _cpProposedToUserData = MutableLiveData<List<ApprovedCPDTO>>()
+    private val _cpProposedToProfessorData = MutableLiveData<List<ApprovedCPDTO>>()
 
-    val cpProposedToUserData: LiveData<List<ApprovedCPDTO>>
-        get() = _cpProposedToUserData
+    val cpProposedToProfessorData: LiveData<List<ApprovedCPDTO>>
+        get() = _cpProposedToProfessorData
 
     private val _cpFullList = MutableLiveData<Boolean>()
 
@@ -47,15 +43,15 @@ class CPListViewModel(application: Application) : AndroidViewModel(application),
 
     private val _createdByUser = MutableLiveData<Boolean>()
 
-    val createdByUser: LiveData<Boolean>
+    val cpCreatedByUser: LiveData<Boolean>
         get() = _createdByUser
 
-    private val _proposedToUser = MutableLiveData<Boolean>()
+    private val _proposedToProfessor = MutableLiveData<Boolean>()
 
-    val proposedToUser: LiveData<Boolean>
-        get() = _proposedToUser
+    val cpProposedToProfessor: LiveData<Boolean>
+        get() = _proposedToProfessor
 
-    fun getAllAvailableCP() {
+    private fun getAllAvailableCP() {
         CPNetwork.cpApiService.getCourseProjects().enqueue(
             object : Callback<List<CourseProjectDTO>> {
                 override fun onFailure(call: Call<List<CourseProjectDTO>>, t: Throwable) {
@@ -72,7 +68,7 @@ class CPListViewModel(application: Application) : AndroidViewModel(application),
         )
     }
 
-    fun getCPCreatedByUser() {
+    private fun getCPCreatedByUser() {
         CPNetwork.cpApiService.getCourseProjectByUserId(UtilsSingleton.INSTANCE.getUserId())
             .enqueue(
                 object : Callback<List<CourseProjectDTO>> {
@@ -90,7 +86,7 @@ class CPListViewModel(application: Application) : AndroidViewModel(application),
             )
     }
 
-    fun getCPProposedToProfessor() {
+    private fun getCPProposedToProfessor() {
         CPNetwork.cpApiService.getProposedCPByProfessorId(
             UtilsSingleton.INSTANCE.getUserProfessorId()
         ).enqueue(
@@ -103,10 +99,25 @@ class CPListViewModel(application: Application) : AndroidViewModel(application),
                     call: Call<List<ApprovedCPDTO>>,
                     response: Response<List<ApprovedCPDTO>>
                 ) {
-                    _cpProposedToUserData.value = response.body()
+                    _cpProposedToProfessorData.value = response.body()
                 }
             }
         )
+    }
+
+    fun onFullListClicked() {
+        getAllAvailableCP()
+        _cpFullList.value = true
+    }
+
+    fun onCreatedListClicked() {
+        getCPCreatedByUser()
+        _createdByUser.value = true
+    }
+
+    fun onProposedListClicked() {
+        getCPProposedToProfessor()
+        _proposedToProfessor.value = true
     }
 
 

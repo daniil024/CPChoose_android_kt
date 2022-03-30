@@ -8,10 +8,8 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.button.MaterialButtonToggleGroup
 import com.hsecourseproject.cpchoose.R
 import com.hsecourseproject.cpchoose.databinding.FragmentLoginBinding
-import com.hsecourseproject.cpchoose.login.models.enums.UserType
 
 
 class LoginFragment : Fragment() {
@@ -44,12 +42,6 @@ class LoginFragment : Fragment() {
 
         return binding.root
         //return inflater.inflate(R.layout.fragment_login, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        // TODO: Use the ViewModel
-
     }
 
     private fun setupUX() {

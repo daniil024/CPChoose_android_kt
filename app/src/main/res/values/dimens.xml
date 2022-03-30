@@ -46,7 +46,10 @@
     <dimen name="create_cp_guideline_margin">16dp</dimen>
     <dimen name="create_cp_screen_title_text_size">22sp</dimen>
     <dimen name="create_cp_screen_margin_top">8dp</dimen>
-    <dimen name="create_cp_default_items_margin">4dp</dimen>
+    <dimen name="create_cp_default_items_margin_top">4dp</dimen>
+    <dimen name="create_cp_project_title_type_mode_margin">20dp</dimen>
+    <dimen name="create_cp_project_send_to_cppr_button_margin_top">30dp</dimen>
+    <dimen name="create_cp_project_send_to_cppr_button_text_size">24sp</dimen>
 
 
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,48 +10,475 @@
             type="com.hsecourseproject.cpchoose.createcp.CreateCPViewModel" />
     </data>
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/createCPConstraintLayout"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineLeft"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/create_cp_guideline_margin" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/createCPConstraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineRight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="@dimen/create_cp_guideline_margin" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/create_cp_guideline_margin" />
 
-        <TextView
-            android:id="@+id/createCPScreenTitle"
-            android:layout_width="@dimen/zero_dp"
-            android:layout_height="wrap_content"
-            android:text="@string/create_cp_screen_title"
-            android:textAlignment="center"
-            android:textSize="@dimen/create_cp_screen_title_text_size"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/create_cp_screen_margin_top"
-            app:layout_constraintEnd_toStartOf="@id/guidelineRight"
-            app:layout_constraintStart_toEndOf="@id/guidelineLeft"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/create_cp_guideline_margin" />
 
-        <TextView
-            android:id="@+id/createCPTitleRus"
-            android:layout_width="@dimen/zero_dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@id/guidelineRight"
-            app:layout_constraintStart_toEndOf="@id/guidelineLeft"
-            app:layout_constraintTop_toBottomOf="@id/createCPScreenTitle"
-            android:text="kkkkkk"/>
+            <TextView
+                android:id="@+id/createCPScreenTitle"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_screen_margin_top"
+                android:text="@string/create_cp_screen_title"
+                android:textAlignment="center"
+                android:textSize="@dimen/create_cp_screen_title_text_size"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/createCPTitleRus"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_project_title_type_mode_margin"
+                android:labelFor="@+id/createCPTitleRusEditText"
+                android:text="@string/create_cp_project_title_rus"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPScreenTitle" />
+
+            <EditText
+                android:id="@+id/createCPTitleRusEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPTitleRus" />
+
+            <TextView
+                android:id="@+id/createCPTitleEng"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPTitleEngEditText"
+                android:text="@string/create_cp_project_title_eng"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPTitleRusEditText" />
+
+            <EditText
+                android:id="@+id/createCPTitleEngEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPTitleEng" />
+
+            <TextView
+                android:id="@+id/createCPProjectType"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_project_title_type_mode_margin"
+                android:labelFor="@+id/createCPProjectTypeSpinner"
+                android:text="@string/create_cp_project_type"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPTitleEngEditText" />
+
+            <Spinner
+                android:id="@+id/createCPProjectTypeSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:entries="@array/create_cp_project_types_spinner_items"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPProjectType" />
+
+            <TextView
+                android:id="@+id/createCPProjectMode"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_project_title_type_mode_margin"
+                android:labelFor="@+id/createCPProjectModeSpinner"
+                android:text="@string/create_cp_project_mode"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPProjectTypeSpinner" />
+
+            <Spinner
+                android:id="@+id/createCPProjectModeSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:entries="@array/create_cp_project_mode_spinner_items"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPProjectMode" />
+
+            <TextView
+                android:id="@+id/createCPMembersCount"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_project_title_type_mode_margin"
+                android:labelFor="@+id/createCPMembersCountEditText"
+                android:text="@string/create_cp_project_members_count"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPProjectModeSpinner" />
+
+            <EditText
+                android:id="@+id/createCPMembersCountEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="2"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPMembersCount" />
+
+            <TextView
+                android:id="@+id/createCPInitiator"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPInitiatorEditText"
+                android:text="@string/create_cp_project_initiator"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPMembersCountEditText" />
+
+            <EditText
+                android:id="@+id/createCPInitiatorEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPInitiator" />
+
+            <TextView
+                android:id="@+id/createCPCompanySubdivision"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPCompanySubdivisionEditText"
+                android:text="@string/create_cp_project_company_subdivision"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPInitiatorEditText" />
+
+            <EditText
+                android:id="@+id/createCPCompanySubdivisionEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPCompanySubdivision" />
+
+            <TextView
+                android:id="@+id/createCPMentor"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPMentorEditText"
+                android:text="@string/create_cp_project_mentor_full_name"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPCompanySubdivisionEditText" />
+
+            <EditText
+                android:id="@+id/createCPMentorEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPMentor" />
+
+            <TextView
+                android:id="@+id/createCPAnnotation"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPAnnotationEditText"
+                android:text="@string/create_cp_project_annotation"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPMentorEditText" />
+
+            <EditText
+                android:id="@+id/createCPAnnotationEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPAnnotation" />
+
+            <TextView
+                android:id="@+id/createCPGoal"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPGoalEditText"
+                android:text="@string/create_cp_project_goal"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPAnnotationEditText" />
+
+            <EditText
+                android:id="@+id/createCPGoalEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPGoal" />
+
+            <TextView
+                android:id="@+id/createCPTasks"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPTasksEditText"
+                android:text="@string/create_cp_project_tasks"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPGoalEditText" />
+
+            <EditText
+                android:id="@+id/createCPTasksEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPTasks" />
+
+            <TextView
+                android:id="@+id/createCPParticipantsTasks"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPParticipantsTasksEditText"
+                android:text="@string/create_cp_project_participants_tasks"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPTasksEditText" />
+
+            <EditText
+                android:id="@+id/createCPParticipantsTasksEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPParticipantsTasks" />
+
+            <TextView
+                android:id="@+id/createCPResults"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPResultsEditText"
+                android:text="@string/create_cp_project_results"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPParticipantsTasksEditText" />
+
+            <EditText
+                android:id="@+id/createCPResultsEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPResults" />
+
+            <TextView
+                android:id="@+id/createCPAdditionalInfo"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPAdditionalInfoEditText"
+                android:text="@string/create_cp_project_additional_info"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPResultsEditText" />
+
+            <EditText
+                android:id="@+id/createCPAdditionalInfoEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPAdditionalInfo" />
+
+            <TextView
+                android:id="@+id/createCPWorkplace"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPWorkplaceEditText"
+                android:text="@string/create_cp_project_workplace"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPAdditionalInfoEditText" />
+
+            <EditText
+                android:id="@+id/createCPWorkplaceEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPWorkplace" />
+
+            <TextView
+                android:id="@+id/createCPStudentsRequirements"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPStudentsRequirementsEditText"
+                android:text="@string/create_cp_project_students_requirements"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPWorkplaceEditText" />
+
+            <EditText
+                android:id="@+id/createCPStudentsRequirementsEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPStudentsRequirements" />
+
+            <TextView
+                android:id="@+id/createCPContacts"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPContactsEditText"
+                android:text="@string/create_cp_project_contacts"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPStudentsRequirementsEditText" />
+
+            <EditText
+                android:id="@+id/createCPContactsEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPContacts" />
+
+            <TextView
+                android:id="@+id/createCPSelectionForm"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPSelectionFormEditText"
+                android:text="@string/create_cp_project_selection_form"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPContactsEditText" />
+
+            <EditText
+                android:id="@+id/createCPSelectionFormEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPSelectionForm" />
+
+            <TextView
+                android:id="@+id/createCPEvaluationCriteria"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPEvaluationCriteriaEditText"
+                android:text="@string/create_cp_project_evaluation_criteria"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPSelectionFormEditText" />
+
+            <EditText
+                android:id="@+id/createCPEvaluationCriteriaEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPEvaluationCriteria" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sentToCPPRButton"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_project_send_to_cppr_button_margin_top"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="@color/main_blue"
+                android:onClick="@{()->createCPViewModel.sendCP()}"
+                android:text="@string/create_cp_project_send_to_cppr_text"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/create_cp_project_send_to_cppr_button_text_size"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPEvaluationCriteriaEditText" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

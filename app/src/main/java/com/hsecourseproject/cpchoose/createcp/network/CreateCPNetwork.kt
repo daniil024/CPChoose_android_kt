@@ -1,21 +1,20 @@
-package com.hsecourseproject.cpchoose.login.network
+package com.hsecourseproject.cpchoose.createcp.network
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.json.Json
-import retrofit2.Retrofit
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
+import retrofit2.Retrofit
 import retrofit2.create
 import java.util.concurrent.TimeUnit
 
-object LoginNetwork {
+object CreateCPNetwork {
 
     private const val baseUrl = "http://10.0.2.2:8080/"
 
     private val json = Json {
         prettyPrint = true
         ignoreUnknownKeys = true
-        coerceInputValues = true
     }
 
     private val contentType = "application/json".toMediaType()
@@ -33,6 +32,5 @@ object LoginNetwork {
         .addConverterFactory(json.asConverterFactory(contentType))
         .build()
 
-    val loginCPApiService: LoginCPApiService = retrofit.create()
-
+    val createCPApiService: CreateCPApiService = retrofit.create()
 }

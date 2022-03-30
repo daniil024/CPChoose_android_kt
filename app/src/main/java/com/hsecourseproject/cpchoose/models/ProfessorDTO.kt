@@ -1,4 +1,4 @@
-package com.hsecourseproject.cpchoose.login.models
+package com.hsecourseproject.cpchoose.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

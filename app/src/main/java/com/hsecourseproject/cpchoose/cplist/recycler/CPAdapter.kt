@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hsecourseproject.cpchoose.R
-import com.hsecourseproject.cpchoose.cplist.models.CourseProjectDTO
+import com.hsecourseproject.cpchoose.models.CourseProjectDTO
 
 class CPAdapter : RecyclerView.Adapter<CPViewHolder>() {
 

@@ -39,6 +39,38 @@
 
     <!-- Strings related to create_cp -->
     <string name="create_cp_screen_title">Описание проекта для студентов ФКН НИУ ВШЭ</string>
+    <string name="create_cp_project_title_rus">Название проекта (рус.)</string>
+    <string name="create_cp_project_title_eng">Название проекта (англ.)</string>
+    <string name="create_cp_project_type">Тип проекта</string>
+    <string name="create_cp_project_mode">Вид проекта</string>
+    <string name="create_cp_project_members_count">Кол-во студентов на проекте</string>
+    <string name="create_cp_project_initiator">Инициатор проекта</string>
+    <string name="create_cp_project_company_subdivision">Подразделение компании/НИУ ВШЭ</string>
+    <string name="create_cp_project_mentor_full_name">ФИО ментора/руководителя проекта</string>
+    <string name="create_cp_project_annotation">Аннотация проекта</string>
+    <string name="create_cp_project_goal">Цель проекта</string>
+    <string name="create_cp_project_tasks">Задачи проекта</string>
+    <string name="create_cp_project_participants_tasks">Задачи каждого из участников проекта</string>
+    <string name="create_cp_project_results">Планируемые результаты проекта</string>
+    <string name="create_cp_project_additional_info">Иная информация</string>
+    <string name="create_cp_project_workplace">Территория выполнения проекта</string>
+    <string name="create_cp_project_students_requirements">Требования к студентам - участникам проекта</string>
+    <string name="create_cp_project_contacts">Заявки студентов на проект принимаются</string>
+    <string name="create_cp_project_no_contacts">Укажите контакты или "не принимаются"</string>
+    <string name="create_cp_project_requests_start_date">Дата начала приема заявок</string>
+    <string name="create_cp_project_requests_finish_date">Дата окончания приема заявок</string>
+    <string name="create_cp_project_selection_form">Формы отбора студентов(собеседование, тестирование, выполнение задания и т.п.)</string>
+    <string name="create_cp_project_evaluation_criteria">Критерии оценивания результатов выполнения проекта руководителем</string>
+    <string name="create_cp_project_send_to_cppr_text">Отправить в ЦППР</string>
 
+    <string-array name="create_cp_project_types_spinner_items">
+        <item>Программный</item>
+        <item>Исследовательский</item>
+    </string-array>
+
+    <string-array name="create_cp_project_mode_spinner_items">
+        <item>Индивидуальный</item>
+        <item>Командный</item>
+    </string-array>
 
 </resources>

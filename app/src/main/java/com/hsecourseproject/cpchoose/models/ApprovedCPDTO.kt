@@ -1,7 +1,5 @@
-package com.hsecourseproject.cpchoose.cplist.models
+package com.hsecourseproject.cpchoose.models
 
-import com.hsecourseproject.cpchoose.login.models.ProfessorDTO
-import com.hsecourseproject.cpchoose.login.models.StudentDTO
 import kotlinx.serialization.SerialName
 
 data class ApprovedCPDTO(

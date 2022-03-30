@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hsecourseproject.cpchoose.R
+import com.hsecourseproject.cpchoose.databinding.CreateCpFragmentBinding
 
 class CreateCPFragment : Fragment() {
 
@@ -16,16 +17,28 @@ class CreateCPFragment : Fragment() {
 
     private lateinit var createCPViewModel: CreateCPViewModel
 
+    private var _binding: CreateCpFragmentBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.create_cp_fragment, container, false)
+    ): View {
+        _binding = CreateCpFragmentBinding.inflate(inflater, container, false)
+        createCPViewModel = ViewModelProvider(this)[CreateCPViewModel::class.java]
+
+        binding.createCPViewModel = createCPViewModel
+        binding.lifecycleOwner = this
+
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        createCPViewModel = ViewModelProvider(this)[CreateCPViewModel::class.java]
         // TODO: Use the ViewModel
     }
 

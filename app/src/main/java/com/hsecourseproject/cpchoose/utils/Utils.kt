@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.hsecourseproject.cpchoose.R
-import com.hsecourseproject.cpchoose.login.models.enums.UserType
+import com.hsecourseproject.cpchoose.models.enums.UserType
 
 class UtilsSingleton private constructor(private val application: Application) {
 
