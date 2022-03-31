@@ -8,8 +8,8 @@ import retrofit2.http.POST
 
 interface CreateCPApiService {
 
-    @POST("sendToCPPR")
-    fun sendToCPPR(
+    @POST("createCourseProject")
+    fun createCourseProject(
         @Body courseProjectDTO: CourseProjectDTO
     ): Call<ResponseBody>
 }

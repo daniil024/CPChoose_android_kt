@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
         if (isLoggedIn) {
             Toast.makeText(this, "User is already logged in", Toast.LENGTH_LONG)
                 .show()
-            startFragment(CPListFragment.newInstance())
-            //startFragment(CreateCPFragment.newInstance())
+            //startFragment(CPListFragment.newInstance())
+            startFragment(CreateCPFragment.newInstance())
         } else {
             startFragment(LoginFragment.newInstance())
             supportActionBar?.hide()

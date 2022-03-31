@@ -31,7 +31,7 @@ class CreateCPFragment : Fragment() {
         createCPViewModel = ViewModelProvider(this)[CreateCPViewModel::class.java]
 
         binding.createCPViewModel = createCPViewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
 
         return binding.root

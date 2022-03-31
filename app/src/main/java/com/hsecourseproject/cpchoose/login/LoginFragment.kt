@@ -36,7 +36,7 @@ class LoginFragment : Fragment() {
         loginViewModel = ViewModelProvider(this)[LoginFragmentViewModel::class.java]
 
         binding.loginFragmentViewModel = loginViewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         setupUX()
 

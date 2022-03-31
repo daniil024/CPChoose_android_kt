@@ -45,7 +45,7 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
         _binding = CpListFragmentBinding.inflate(inflater, container, false)
         cpListViewModel = ViewModelProvider(this)[CPListViewModel::class.java]
         binding.cpListViewModel = cpListViewModel
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         if (UtilsSingleton.INSTANCE.getUserType() == UserType.STUDENT) {
             binding.proposedToUser.visibility = View.GONE
