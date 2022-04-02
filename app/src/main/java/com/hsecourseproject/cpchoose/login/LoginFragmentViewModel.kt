@@ -30,10 +30,15 @@ class LoginFragmentViewModel(application: Application) :
 
     private var userType = UserType.STUDENT
 
-    private val _navigateToFinish = MutableLiveData<Boolean>()
+    private val _navigateToCodeChecker = MutableLiveData<Boolean>()
 
-    val navigateToFinish: LiveData<Boolean>
-        get() = _navigateToFinish
+    val navigateToCodeChecker: LiveData<Boolean>
+        get() = _navigateToCodeChecker
+
+    private val _navigateToApp = MutableLiveData<Boolean>()
+
+    val navigateToApp: LiveData<Boolean>
+        get() = _navigateToApp
 
     private val _errorToastEmail = MutableLiveData<Boolean>()
 
@@ -67,7 +72,7 @@ class LoginFragmentViewModel(application: Application) :
         } else if (!isEmailCorrect(inputEmail.value!!)) {
             _errorToastEmailDomain.value = true
         } else {
-            _navigateToFinish.value = true
+            _navigateToCodeChecker.value = true
             saveUserRequest()
         }
     }
@@ -156,6 +161,7 @@ class LoginFragmentViewModel(application: Application) :
                             getApplication<Application>().resources.getString(R.string.is_logged_in)
                         editor.putBoolean(loggedTag, isCodeRight)
                         editor.apply()
+                        _navigateToApp.value = true
                     } else {
                         _errorToastCode.value = true
                     }
@@ -192,7 +198,7 @@ class LoginFragmentViewModel(application: Application) :
     }
 
     fun doneToastFinish() {
-        _navigateToFinish.value = false
+        _navigateToCodeChecker.value = false
     }
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {

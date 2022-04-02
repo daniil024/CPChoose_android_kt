@@ -50,6 +50,7 @@
     <dimen name="create_cp_project_title_type_mode_margin">20dp</dimen>
     <dimen name="create_cp_project_send_to_cppr_button_margin_top">30dp</dimen>
     <dimen name="create_cp_project_send_to_cppr_button_text_size">24sp</dimen>
+    <dimen name="create_cp_start_date_label_margin_top">20dp</dimen>
 
 
 </resources>

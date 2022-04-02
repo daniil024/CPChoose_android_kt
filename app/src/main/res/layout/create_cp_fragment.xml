@@ -64,7 +64,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
-                android:text="@{createCPViewModel.titleRus}"
+                android:text="@={createCPViewModel.titleRus}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPTitleRus" />
@@ -87,7 +87,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
-                android:text="@{createCPViewModel.titleEng}"
+                android:text="@={createCPViewModel.titleEng}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPTitleEng" />
@@ -109,6 +109,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:entries="@array/create_cp_project_types_spinner_items"
+                android:selectedItemPosition="@={createCPViewModel.projectType}"
+                android:spinnerMode="dialog"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPProjectType" />
 
@@ -129,6 +131,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:entries="@array/create_cp_project_mode_spinner_items"
+                android:selectedItemPosition="@={createCPViewModel.projectMode}"
+                android:spinnerMode="dialog"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPProjectMode" />
 
@@ -151,7 +155,7 @@
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:maxLength="2"
-                android:text="@{createCPViewModel.membersCount}"
+                android:text="@={createCPViewModel.membersCount}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPMembersCount" />
@@ -174,7 +178,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
-                android:text="@{createCPViewModel.initiator}"
+                android:text="@={createCPViewModel.initiator}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPInitiator" />
@@ -197,7 +201,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
-                android:text="@{createCPViewModel.companySubdivision}"
+                android:text="@={createCPViewModel.companySubdivision}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPCompanySubdivision" />
@@ -220,7 +224,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
-                android:text="@{createCPViewModel.mentor}"
+                android:text="@={createCPViewModel.mentor}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPMentor" />
@@ -243,7 +247,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
-                android:text="@{createCPViewModel.cpAnnotation}"
+                android:text="@={createCPViewModel.cpAnnotation}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPAnnotation" />
@@ -266,7 +270,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
-                android:text="@{createCPViewModel.goal}"
+                android:text="@={createCPViewModel.goal}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPGoal" />
@@ -289,7 +293,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
-                android:text="@{createCPViewModel.tasks}"
+                android:text="@={createCPViewModel.tasks}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPTasks" />
@@ -312,7 +316,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
-                android:text="@{createCPViewModel.participantsTasks}"
+                android:text="@={createCPViewModel.participantsTasks}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPParticipantsTasks" />
@@ -335,7 +339,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
-                android:text="@{createCPViewModel.results}"
+                android:text="@={createCPViewModel.results}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPResults" />
@@ -358,6 +362,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
+                android:text="@={createCPViewModel.additionalInfo}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPAdditionalInfo" />
@@ -380,6 +385,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
+                android:text="@={createCPViewModel.workplace}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPWorkplace" />
@@ -402,6 +408,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
+                android:text="@={createCPViewModel.studentsRequirements}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPStudentsRequirements" />
@@ -424,9 +431,54 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
+                android:text="@={createCPViewModel.contacts}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPContacts" />
+
+            <TextView
+                android:id="@+id/createCPStartDate"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_start_date_label_margin_top"
+                android:labelFor="@+id/createCPStartDatePicker"
+                android:text="@string/create_cp_project_requests_start_date"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPContactsEditText" />
+
+            <DatePicker
+                android:id="@+id/createCPStartDatePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:onDateChanged="@{(v, y, m, d)->createCPViewModel.onStartDateChanged(v, y, m, d)}"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPStartDate" />
+
+            <TextView
+                android:id="@+id/createCPFinishDate"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPFinishDatePicker"
+                android:text="@string/create_cp_project_requests_finish_date"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPStartDatePicker" />
+
+            <DatePicker
+                android:id="@+id/createCPFinishDatePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:onDateChanged="@{(v, y, m, d)->createCPViewModel.onFinishDateChanged(v, y, m, d)}"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPFinishDate" />
 
             <TextView
                 android:id="@+id/createCPSelectionForm"
@@ -437,7 +489,7 @@
                 android:text="@string/create_cp_project_selection_form"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
-                app:layout_constraintTop_toBottomOf="@id/createCPContactsEditText" />
+                app:layout_constraintTop_toBottomOf="@id/createCPFinishDatePicker" />
 
             <EditText
                 android:id="@+id/createCPSelectionFormEditText"
@@ -446,6 +498,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
+                android:text="@={createCPViewModel.selectionForm}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPSelectionForm" />
@@ -468,6 +521,7 @@
                 android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
+                android:text="@={createCPViewModel.evaluationCriteria}"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPEvaluationCriteria" />

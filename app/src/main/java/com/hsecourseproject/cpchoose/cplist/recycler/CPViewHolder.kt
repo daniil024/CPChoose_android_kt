@@ -10,7 +10,7 @@ class CPViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val title: TextView = itemView.findViewById(R.id.cpCardTitle)
     private val status: TextView = itemView.findViewById(R.id.cpCardStatus)
     private val shortDescription: TextView = itemView.findViewById(R.id.cpCardShortDesc)
-    private val mentor: TextView = itemView.findViewById(R.id.cpCardCreator)
+    private val mentor: TextView = itemView.findViewById(R.id.cpCardMentor)
 
     fun onBind(cp: CourseProjectDTO) {
         title.text = cp.titleRus

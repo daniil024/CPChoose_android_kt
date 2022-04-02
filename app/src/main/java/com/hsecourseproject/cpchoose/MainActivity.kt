@@ -2,9 +2,15 @@ package com.hsecourseproject.cpchoose
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.hsecourseproject.cpchoose.cplist.CPListFragment
 import com.hsecourseproject.cpchoose.createcp.CreateCPFragment
 import com.hsecourseproject.cpchoose.login.LoginFragment
@@ -12,13 +18,18 @@ import com.hsecourseproject.cpchoose.utils.UtilsSingleton
 
 class MainActivity : AppCompatActivity() {
 
+    private val navController by lazy {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navHostFragment.navController
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         isUserLoggedIn()
     }
-
     private fun isUserLoggedIn() {
         UtilsSingleton.init(application)
 
@@ -28,10 +39,13 @@ class MainActivity : AppCompatActivity() {
         if (isLoggedIn) {
             Toast.makeText(this, "User is already logged in", Toast.LENGTH_LONG)
                 .show()
+
+            navController.navigate(R.id.action_loginFragment_to_CPListFragment)
+
             //startFragment(CPListFragment.newInstance())
-            startFragment(CreateCPFragment.newInstance())
+            //startFragment(CreateCPFragment.newInstance())
         } else {
-            startFragment(LoginFragment.newInstance())
+            //startFragment(LoginFragment.newInstance())
             supportActionBar?.hide()
         }
     }

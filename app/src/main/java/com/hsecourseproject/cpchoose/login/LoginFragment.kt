@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.hsecourseproject.cpchoose.R
 import com.hsecourseproject.cpchoose.databinding.FragmentLoginBinding
 
@@ -80,7 +81,7 @@ class LoginFragment : Fragment() {
             }
         }
 
-        loginViewModel.navigateToFinish.observe(viewLifecycleOwner) { hasError ->
+        loginViewModel.navigateToCodeChecker.observe(viewLifecycleOwner) { hasError ->
             if (hasError) {
                 Toast.makeText(requireContext(), "Good enough", Toast.LENGTH_LONG)
                     .show()
@@ -111,6 +112,12 @@ class LoginFragment : Fragment() {
                 binding.toggleButtonStudent.backgroundTintList = ContextCompat.getColorStateList(
                     requireContext(), R.color.main_blue
                 )
+            }
+        }
+
+        loginViewModel.navigateToApp.observe(viewLifecycleOwner) { isCodeRight ->
+            if (isCodeRight) {
+                Navigation.findNavController(view = requireView()).navigate(R.id.action_loginFragment_to_CPListFragment)
             }
         }
 

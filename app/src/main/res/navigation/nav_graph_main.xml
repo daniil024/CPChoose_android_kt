@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.hsecourseproject.cpchoose.login.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_CPListFragment"
+            app:destination="@id/CPListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CPListFragment"
+        android:name="com.hsecourseproject.cpchoose.cplist.CPListFragment"
+        android:label="CPListFragment" >
+        <action
+            android:id="@+id/action_CPListFragment_to_createCPFragment"
+            app:destination="@id/createCPFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createCPFragment"
+        android:name="com.hsecourseproject.cpchoose.createcp.CreateCPFragment"
+        android:label="CreateCPFragment" />
+</navigation>

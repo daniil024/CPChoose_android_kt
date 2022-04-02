@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/list_cp_menu_item"
+        android:id="@+id/CPListFragment"
         android:enabled="true"
         android:title="@string/cp_list_menu_item_title"
         android:icon="@drawable/ic_clear_all" />
     <item
-        android:id="@+id/create_cp_menu_item"
+        android:id="@+id/CreateCPFragment"
         android:enabled="true"
         android:title="@string/create_cp_menu_item_title"
         android:icon="@drawable/ic_add_menu_item" />
@@ -15,7 +15,11 @@
         android:id="@+id/user_profile_menu_item"
         android:enabled="true"
         android:title="@string/user_profile_menu_item_title"
-        android:icon="@drawable/ic_account_circle"
-        android:visible="true" />
+        android:icon="@drawable/ic_account_circle" />
+    <item
+        android:id="@+id/user_approve_cp"
+        android:enabled="true"
+        android:title="@string/user_check_menu_item_title"
+        android:icon="@drawable/ic_check_circle" />
 
 </menu>

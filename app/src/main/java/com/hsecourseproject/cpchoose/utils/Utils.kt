@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.hsecourseproject.cpchoose.R
+import com.hsecourseproject.cpchoose.models.enums.CPMode
+import com.hsecourseproject.cpchoose.models.enums.CPType
 import com.hsecourseproject.cpchoose.models.enums.UserType
 
 class UtilsSingleton private constructor(private val application: Application) {
@@ -82,6 +84,18 @@ class UtilsSingleton private constructor(private val application: Application) {
     fun getUserType(): UserType? {
         return sharedPreference.getString(application.getString(R.string.user_type), "")
             ?.let { UserType.valueOf(it) }
+    }
+
+    fun getCPType(id: Int): CPType {
+        val type =
+            application.resources.getStringArray(R.array.create_cp_project_types_spinner_items)[id]
+        return if (type == CPType.PROGRAM.type) CPType.PROGRAM else CPType.RESEARCH
+    }
+
+    fun getCPMode(id: Int): CPMode {
+        val mode =
+            application.resources.getStringArray(R.array.create_cp_project_mode_spinner_items)[id]
+        return if (mode == CPMode.INDIVIDUAL.mode) CPMode.INDIVIDUAL else CPMode.COMMAND
     }
 
 }

@@ -8,9 +8,14 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
+import com.hsecourseproject.cpchoose.MainActivity
 import com.hsecourseproject.cpchoose.R
 import com.hsecourseproject.cpchoose.models.CourseProjectDTO
 import com.hsecourseproject.cpchoose.cplist.recycler.CPAdapter
@@ -47,9 +52,15 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
         binding.cpListViewModel = cpListViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+
+        val bottomNavigationView = binding.bottomNavigation
+        val navController = findNavController()
+        bottomNavigationView.setupWithNavController(navController)
+
         if (UtilsSingleton.INSTANCE.getUserType() == UserType.STUDENT) {
             binding.proposedToUser.visibility = View.GONE
             binding.bottomNavigation.menu.findItem(R.id.user_profile_menu_item).isVisible = false
+            binding.bottomNavigation.menu.findItem(R.id.user_approve_cp).isVisible = false
         }
 
         setupTBG()

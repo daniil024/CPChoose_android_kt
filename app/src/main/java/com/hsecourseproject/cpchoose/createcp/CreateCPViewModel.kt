@@ -1,9 +1,12 @@
 package com.hsecourseproject.cpchoose.createcp
 
 import android.app.Application
+import android.util.Log
 import android.view.View
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.databinding.Bindable
+import androidx.databinding.BindingAdapter
 import androidx.databinding.Observable
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -16,6 +19,8 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDate
+import java.util.*
 
 class CreateCPViewModel(application: Application) : AndroidViewModel(application), Observable {
 
@@ -26,10 +31,10 @@ class CreateCPViewModel(application: Application) : AndroidViewModel(application
     var titleEng = MutableLiveData<String>()
 
     @Bindable
-    var projectType = MutableLiveData<String>()
+    var projectType = MutableLiveData<Int>()
 
     @Bindable
-    var projectMode = MutableLiveData<String>()
+    var projectMode = MutableLiveData<Int>()
 
     @Bindable
     var membersCount = MutableLiveData<String>()
@@ -76,48 +81,49 @@ class CreateCPViewModel(application: Application) : AndroidViewModel(application
     @Bindable
     var evaluationCriteria = MutableLiveData<String>()
 
-    var courseProjectDTO: CourseProjectDTO? = null
+    var startDate = MutableLiveData<String>()
+
+    var finishDate = MutableLiveData<String>()
+
 
     private fun verificateCPFormData(): Boolean {
         // TODO: check that all required fields are filled
+        // Check membersCount and projectType together
         return false
     }
 
-    private fun createCP() {
-        // TODO: add binding for spinners
-        // TODO: create here CP object and save it to courseProjectDTO
+    private fun createCP(): CourseProjectDTO {
+        return CourseProjectDTO(
+            null,
+            UtilsSingleton.INSTANCE.getUserId(),
+            titleRus = titleRus.value,
+            titleEng = titleEng.value,
+            type = UtilsSingleton.INSTANCE.getCPType(projectType.value ?: 0),
+            mode = UtilsSingleton.INSTANCE.getCPMode(projectMode.value ?: 0),
+            membersCount = membersCount.value?.toInt() ?: 1,
+            projectInitiator = initiator.value,
+            companySubdivision = companySubdivision.value,
+            mentorFullName = mentor.value,
+            annotation = cpAnnotation.value,
+            projectGoal = goal.value,
+            projectTasks = tasks.value,
+            participantsTasks = participantsTasks.value,
+            projectResults = results.value,
+            additionalInfo = additionalInfo.value,
+            workPlace = workplace.value,
+            studentsRequirements = studentsRequirements.value,
+            contacts = contacts.value,
+            startDate = startDate.value,
+            finishDate = finishDate.value,
+            selectionForm = selectionForm.value,
+            evaluationCriteria = evaluationCriteria.value,
+            null,
+        )
     }
 
     fun sendCP() {
         val createCpApiService = CreateCPNetwork.createCPApiService
-        createCpApiService.createCourseProject(
-            CourseProjectDTO(
-                null,
-                UtilsSingleton.INSTANCE.getUserId(),
-                titleRus = titleRus.value,
-                titleEng = titleEng.value,
-                type = CPType.PROGRAM,
-                mode = CPMode.COMMAND,
-                membersCount = membersCount.value?.toInt() ?: 0,
-                null,
-                null,
-                "Сосновский Г.М.",
-                annotation = "Just some default annotation!",
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-            )
-        ).enqueue(
+        createCpApiService.createCourseProject(createCP()).enqueue(
             object : Callback<ResponseBody> {
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                     t.printStackTrace()
@@ -139,4 +145,13 @@ class CreateCPViewModel(application: Application) : AndroidViewModel(application
     override fun removeOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
     }
 
+    fun onStartDateChanged(v: DatePicker, y: Int, m: Int, d: Int) {
+        // TODO: set initial value for datepicker
+        startDate.value = "$y-$m-$d"
+    }
+
+    fun onFinishDateChanged(v: DatePicker, y: Int, m: Int, d: Int) {
+        // TODO: set initial value for datepicker
+        finishDate.value = "$y-$m-$d"
+    }
 }

@@ -30,6 +30,7 @@
     <string name="cp_list_menu_item_title">Список КП</string>
     <string name="create_cp_menu_item_title">Создать КП</string>
     <string name="user_profile_menu_item_title">Профиль</string>
+    <string name="user_check_menu_item_title">Заявки</string>
 
     <!-- Strings related to cp_list -->
     <string name="cp_full_list_button">Список</string>

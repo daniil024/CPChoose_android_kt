@@ -16,4 +16,7 @@ data class StudentDTO(
 
     @SerialName("yearOfStudy")
     val yearOfStudy: Int?,
+
+    @SerialName("cpChoseCount")
+    val cpChoseCount:Int?
 )
