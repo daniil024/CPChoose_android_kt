@@ -9,5 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="main_blue">#AFEEEE</color>
-    <color name="red">#FF0000</color>
+<!--    <color name="red">#FF0000</color>-->
+<!--    <color name="green">#98FB98</color>-->
+    <color name="red">#F33939</color>
+    <color name="green">#FF8BC34A</color>
+
 </resources>

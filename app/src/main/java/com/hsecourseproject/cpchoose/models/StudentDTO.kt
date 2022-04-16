@@ -19,4 +19,13 @@ data class StudentDTO(
 
     @SerialName("cpChoseCount")
     val cpChoseCount:Int?
+
+//    @SerialName("firstName")
+//    var firstName: String?,
+
+//    @SerialName("lastName")
+//    var lastName: String?,
+//
+//    @SerialName("patronymic")
+//    var patronymic: String?,
 )

@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="cpInfoViewModel"
+            type="com.hsecourseproject.cpchoose.cpinfo.CPInfoViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/cpInfoGuidelineLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/cp_info_guideline_margin" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/cpInfoGuidelineRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/cp_info_guideline_margin" />
+
+<!--            <Toolbar-->
+<!--                android:id="@+id/cpInfoToolbar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="?attr/colorPrimary"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"-->
+<!--                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>-->
+
+            <TextView
+                android:id="@+id/cpInfoTitle"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_screen_margin_top"
+                android:text="@string/cp_info_title"
+                android:textAlignment="center"
+                android:textSize="@dimen/cp_info_screen_title_text_size"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/cpInfoTitleRus"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_title_rus"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoTitle" />
+
+            <TextView
+                android:id="@+id/cpInfoTitleRusText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.titleRus}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoTitleRus" />
+
+            <TextView
+                android:id="@+id/cpInfoTitleEng"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_title_eng"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoTitleRusText" />
+
+            <TextView
+                android:id="@+id/cpInfoTitleEngText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.titleEng}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoTitleEng" />
+
+            <TextView
+                android:id="@+id/cpInfoType"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_type"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoTitleEngText" />
+
+            <TextView
+                android:id="@+id/cpInfoTypeText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.projectType}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoType" />
+
+            <TextView
+                android:id="@+id/cpInfoMode"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_mode"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoTypeText" />
+
+            <TextView
+                android:id="@+id/cpInfoModeText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.projectMode}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoMode" />
+
+            <TextView
+                android:id="@+id/cpInfoMembersCount"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_members_count"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoModeText" />
+
+            <TextView
+                android:id="@+id/cpInfoMembersCountText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.membersCount}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoMembersCount" />
+
+            <TextView
+                android:id="@+id/cpInfoInitiator"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_initiator"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoMembersCountText" />
+
+            <TextView
+                android:id="@+id/cpInfoInitiatorText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.initiator}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoInitiator" />
+
+            <TextView
+                android:id="@+id/cpInfoCompanySubdivision"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_company_subdivision"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoInitiatorText" />
+
+            <TextView
+                android:id="@+id/cpInfoCompanySubdivisionText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.companySubdivision}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoCompanySubdivision" />
+
+            <TextView
+                android:id="@+id/cpInfoMentor"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_mentor_full_name"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoCompanySubdivisionText" />
+
+            <TextView
+                android:id="@+id/cpInfoMentorText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.mentor}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoMentor" />
+
+            <TextView
+                android:id="@+id/cpInfoAnnotation"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_annotation"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoMentorText" />
+
+            <TextView
+                android:id="@+id/cpInfoAnnotationText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.cpAnnotation}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoAnnotation" />
+
+            <TextView
+                android:id="@+id/cpInfoGoal"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_goal"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoAnnotationText" />
+
+            <TextView
+                android:id="@+id/cpInfoGoalText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.goal}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoGoal" />
+
+            <TextView
+                android:id="@+id/cpInfoTasks"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_tasks"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoGoalText" />
+
+            <TextView
+                android:id="@+id/cpInfoTasksText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.tasks}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoTasks" />
+
+            <TextView
+                android:id="@+id/cpInfoParticipantsTasks"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_participants_tasks"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoTasksText" />
+
+            <TextView
+                android:id="@+id/cpInfoParticipantsTasksText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.participantsTasks}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoParticipantsTasks" />
+
+            <TextView
+                android:id="@+id/cpInfoResults"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_results"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoParticipantsTasksText" />
+
+            <TextView
+                android:id="@+id/cpInfoResultsText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.results}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoResults" />
+
+            <TextView
+                android:id="@+id/cpInfoAdditionalInfo"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_additional_info"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoResultsText" />
+
+            <TextView
+                android:id="@+id/cpInfoAdditionalInfoText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.additionalInfo}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoAdditionalInfo" />
+
+            <TextView
+                android:id="@+id/cpInfoWorkplace"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_workplace"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoAdditionalInfoText" />
+
+            <TextView
+                android:id="@+id/cpInfoWorkplaceText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.workplace}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoWorkplace" />
+
+            <TextView
+                android:id="@+id/cpInfoStudentsRequirements"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_students_requirements"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoWorkplaceText" />
+
+            <TextView
+                android:id="@+id/cpInfoStudentsRequirementsText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.studentsRequirements}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoStudentsRequirements" />
+
+            <TextView
+                android:id="@+id/cpInfoContacts"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_contacts"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoStudentsRequirementsText" />
+
+            <TextView
+                android:id="@+id/cpInfoContactsText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.contacts}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoContacts" />
+
+            <TextView
+                android:id="@+id/cpInfoRequestsStartDate"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_requests_start_date"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoContactsText" />
+
+            <TextView
+                android:id="@+id/cpInfoRequestsStartDateText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.startDate}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoRequestsStartDate" />
+
+            <TextView
+                android:id="@+id/cpInfoRequestsFinishDate"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_requests_finish_date"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoRequestsStartDateText" />
+
+            <TextView
+                android:id="@+id/cpInfoRequestsDatesText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.finishDate}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoRequestsFinishDate" />
+
+            <TextView
+                android:id="@+id/cpInfoSelectionForm"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_selection_form"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoRequestsDatesText" />
+
+            <TextView
+                android:id="@+id/cpInfoSelectionFormText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.selectionForm}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoSelectionForm" />
+
+            <TextView
+                android:id="@+id/cpInfoEvaluationCriteria"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_evaluation_criteria"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoSelectionFormText" />
+
+            <TextView
+                android:id="@+id/cpInfoEvaluationCriteriaText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.evaluationCriteria}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoEvaluationCriteria" />
+
+            <TextView
+                android:id="@+id/cpInfoProfessorEmail"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@string/cp_info_project_professor_email"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoEvaluationCriteriaText" />
+
+            <TextView
+                android:id="@+id/cpInfoProfessorEmailText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_default_margin_top"
+                android:text="@={cpInfoViewModel.professorEmail}"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoProfessorEmail" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/applyCPRequest"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/cp_info_apply_request_button_margin_top"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="@color/main_blue"
+                android:onClick="@{()->cpInfoViewModel.applyRequest()}"
+                android:text="@string/cp_info_apply_request_text"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/cp_info_apply_request_button_text_size"
+                app:layout_constraintEnd_toStartOf="@id/cpInfoGuidelineRight"
+                app:layout_constraintStart_toEndOf="@id/cpInfoGuidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/cpInfoProfessorEmailText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

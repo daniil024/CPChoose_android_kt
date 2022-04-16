@@ -7,17 +7,17 @@
         android:title="@string/cp_list_menu_item_title"
         android:icon="@drawable/ic_clear_all" />
     <item
-        android:id="@+id/CreateCPFragment"
+        android:id="@+id/createCPFragment"
         android:enabled="true"
         android:title="@string/create_cp_menu_item_title"
         android:icon="@drawable/ic_add_menu_item" />
     <item
-        android:id="@+id/user_profile_menu_item"
+        android:id="@+id/profileFragment"
         android:enabled="true"
         android:title="@string/user_profile_menu_item_title"
         android:icon="@drawable/ic_account_circle" />
     <item
-        android:id="@+id/user_approve_cp"
+        android:id="@+id/CPApprovingFragment"
         android:enabled="true"
         android:title="@string/user_check_menu_item_title"
         android:icon="@drawable/ic_check_circle" />

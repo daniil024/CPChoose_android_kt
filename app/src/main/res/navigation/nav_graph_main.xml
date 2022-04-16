@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
     app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.hsecourseproject.cpchoose.login.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_CPListFragment"
             app:destination="@id/CPListFragment" />
@@ -15,13 +16,42 @@
     <fragment
         android:id="@+id/CPListFragment"
         android:name="com.hsecourseproject.cpchoose.cplist.CPListFragment"
-        android:label="CPListFragment" >
+        android:label="CPListFragment">
         <action
-            android:id="@+id/action_CPListFragment_to_createCPFragment"
-            app:destination="@id/createCPFragment" />
+            android:id="@+id/action_CPListFragment_to_CPInfo"
+            app:destination="@id/CPInfo" />
+        <action
+            android:id="@+id/action_CPListFragment_to_filterDialog"
+            app:destination="@id/filterDialog" />
     </fragment>
     <fragment
         android:id="@+id/createCPFragment"
         android:name="com.hsecourseproject.cpchoose.createcp.CreateCPFragment"
-        android:label="CreateCPFragment" />
+        android:label="CreateCPFragment" >
+        <action
+            android:id="@+id/action_createCPFragment_to_CPListFragment"
+            app:destination="@id/CPListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CPInfo"
+        android:name="com.hsecourseproject.cpchoose.cpinfo.CPInfo"
+        android:label="CPInfo"
+        app:popUpTo="@+id/CPListFragment">
+<!--        <argument-->
+<!--            android:name="courseProject"-->
+<!--            app:argType="<CourseProject>" />-->
+    </fragment>
+    <dialog
+        android:id="@+id/filterDialog"
+        android:name="com.hsecourseproject.cpchoose.cplist.FilterDialog"
+        android:label="FilterDialog" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.hsecourseproject.cpchoose.profile.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/CPApprovingFragment"
+        android:name="com.hsecourseproject.cpchoose.cpapproving.CPApprovingFragment"
+        android:label="CPApprovingFragment" />
+
 </navigation>

@@ -6,14 +6,17 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ProfessorDTO(
     @SerialName("id")
-    val id: Int?,
+    var id: Int?,
+
+    @SerialName("companyName")
+    var companyName: String?,
 
     @SerialName("cpCount")
-    val cpCount: Int?,
+    var cpCount: Int?,
 
     @SerialName("subdivision")
-    val subdivision: String?,
+    var subdivision: String?,
 
     @SerialName("position")
-    val position: String?
+    var position: String?
 )

@@ -5,27 +5,31 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
+import com.google.gson.Gson
 import com.hsecourseproject.cpchoose.MainActivity
 import com.hsecourseproject.cpchoose.R
-import com.hsecourseproject.cpchoose.models.CourseProjectDTO
 import com.hsecourseproject.cpchoose.cplist.recycler.CPAdapter
 import com.hsecourseproject.cpchoose.cplist.recycler.CPItemDecoration
-import com.hsecourseproject.cpchoose.cplist.recycler.OnCPCardClickListener
+import com.hsecourseproject.cpchoose.cplist.recycler.OnRecyclerItemClicked
 import com.hsecourseproject.cpchoose.databinding.CpListFragmentBinding
+import com.hsecourseproject.cpchoose.models.CourseProjectDTO
 import com.hsecourseproject.cpchoose.models.enums.UserType
 import com.hsecourseproject.cpchoose.utils.UtilsSingleton
 
-class CPListFragment : Fragment(), OnCPCardClickListener {
+class CPListFragment : Fragment() {
 
     companion object {
         fun newInstance() = CPListFragment()
@@ -43,6 +47,12 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
 
     private var adapter: CPAdapter? = null
 
+    private val navHostFragment by lazy {
+        Navigation.findNavController(activity as MainActivity, R.id.fragmentContainerView)
+    }
+
+    private var bottomNavigationView: BottomNavigationView? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,15 +62,16 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
         binding.cpListViewModel = cpListViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        bottomNavigationView = activity?.findViewById(R.id.bottomNavigation)
+        activity?.findViewById<Toolbar>(R.id.defaultEmptyToolbar)?.visibility = View.VISIBLE
 
-        val bottomNavigationView = binding.bottomNavigation
-        val navController = findNavController()
-        bottomNavigationView.setupWithNavController(navController)
+
+        bottomNavigationView?.visibility = View.VISIBLE
 
         if (UtilsSingleton.INSTANCE.getUserType() == UserType.STUDENT) {
             binding.proposedToUser.visibility = View.GONE
-            binding.bottomNavigation.menu.findItem(R.id.user_profile_menu_item).isVisible = false
-            binding.bottomNavigation.menu.findItem(R.id.user_approve_cp).isVisible = false
+            //bottomNavigationView?.menu?.findItem(R.id.profileFragment)?.isVisible = false
+            //bottomNavigationView?.menu?.findItem(R.id.CPApprovingFragment)?.isVisible = false
         }
 
         setupTBG()
@@ -69,6 +80,29 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
             if (data != null)
                 updateData(data)
         }
+
+        cpListViewModel.filterBtnClicked.observe(viewLifecycleOwner){wasClicked->
+            if(wasClicked){
+                findNavController().navigate(R.id.action_CPListFragment_to_filterDialog)
+                cpListViewModel.disableFilterClick()
+            }
+        }
+
+        val currentFragment = findNavController().getBackStackEntry(R.id.CPListFragment)
+        val dialogObserver = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME
+                && currentFragment.savedStateHandle.contains("filterData")) {
+                val result = currentFragment.savedStateHandle.get<ArrayList<String>>("filterData")
+                cpListViewModel.getFilteredAvailableCP(result?.get(0), result?.get(1))
+            }
+        }
+        val dialogLifecycle = currentFragment.lifecycle
+        dialogLifecycle.addObserver(dialogObserver)
+        viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_DESTROY) {
+                dialogLifecycle.removeObserver(dialogObserver)
+            }
+        })
 
         return binding.root
     }
@@ -81,7 +115,7 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
 
     private fun setupRecycler() {
         recycler = binding.cpListRecycler
-        adapter = CPAdapter()
+        adapter = CPAdapter(clickListener)
         recycler?.adapter = adapter
         recycler?.layoutManager = LinearLayoutManager(requireContext())
 
@@ -142,14 +176,25 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun updateData(cp: List<CourseProjectDTO>) {
+//        val callback = CPCallback(cpListViewModel.cpListData.value!!, cp)
+//        val diff = DiffUtil.calculateDiff(callback)
+//        Log.i("my_tag:", recycler.toString())
+//        Log.i("my_tag:", recycler?.adapter.toString())
+//        diff.dispatchUpdatesTo(recycler?.adapter!!)
+//        (recycler?.adapter as? CPAdapter)?.bindCourseProjects(cp)
+
         (recycler?.adapter as? CPAdapter)?.apply {
             bindCourseProjects(cp)
             adapter?.notifyDataSetChanged()
         }
     }
 
-    override fun onCPCardClicked(courseProjectDTO: CourseProjectDTO) {
-        // TODO: call new intent to open card detailed info
+    private val clickListener = object : OnRecyclerItemClicked {
+        override fun onClick(cp: CourseProjectDTO) {
+            val bundle: Bundle =
+                bundleOf(CourseProjectDTO::class.java.simpleName to Gson().toJson(cp))
+            navHostFragment.navigate(R.id.action_CPListFragment_to_CPInfo, bundle)
+        }
     }
 
     override fun onDestroyView() {
@@ -157,5 +202,4 @@ class CPListFragment : Fragment(), OnCPCardClickListener {
         recycler = null
         adapter = null
     }
-
 }

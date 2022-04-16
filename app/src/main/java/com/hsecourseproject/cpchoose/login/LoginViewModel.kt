@@ -19,7 +19,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginFragmentViewModel(application: Application) :
+class LoginViewModel(application: Application) :
     AndroidViewModel(application), Observable {
 
     @Bindable

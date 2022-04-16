@@ -51,21 +51,35 @@ class CPListViewModel(application: Application) : AndroidViewModel(application),
     val cpProposedToProfessor: LiveData<Boolean>
         get() = _proposedToProfessor
 
-    private fun getAllAvailableCP() {
-        CPNetwork.cpApiService.getCourseProjects().enqueue(
-            object : Callback<List<CourseProjectDTO>> {
-                override fun onFailure(call: Call<List<CourseProjectDTO>>, t: Throwable) {
-                    t.printStackTrace()
-                }
+    private val _filterBtnClicked = MutableLiveData<Boolean>()
 
-                override fun onResponse(
-                    call: Call<List<CourseProjectDTO>>,
-                    response: Response<List<CourseProjectDTO>>
-                ) {
-                    _cpListData.value = response.body()
-                }
-            }
+    val filterBtnClicked: LiveData<Boolean>
+        get() = _filterBtnClicked
+
+    private fun getAllAvailableCP(professorSurname: String?, word: String?) {
+        CPNetwork.cpApiService.getCourseProjects(
+            UtilsSingleton.INSTANCE.getUserId(),
+            professorSurname,
+            word
         )
+            .enqueue(
+                object : Callback<List<CourseProjectDTO>> {
+                    override fun onFailure(call: Call<List<CourseProjectDTO>>, t: Throwable) {
+                        t.printStackTrace()
+                    }
+
+                    override fun onResponse(
+                        call: Call<List<CourseProjectDTO>>,
+                        response: Response<List<CourseProjectDTO>>
+                    ) {
+                        _cpListData.value = response.body()
+                    }
+                }
+            )
+    }
+
+    fun getFilteredAvailableCP(professorSurname: String?, word: String?) {
+        getAllAvailableCP(professorSurname, word)
     }
 
     private fun getCPCreatedByUser() {
@@ -106,7 +120,7 @@ class CPListViewModel(application: Application) : AndroidViewModel(application),
     }
 
     fun onFullListClicked() {
-        getAllAvailableCP()
+        getAllAvailableCP("", "")
         _cpFullList.value = true
     }
 
@@ -120,6 +134,14 @@ class CPListViewModel(application: Application) : AndroidViewModel(application),
         _proposedToProfessor.value = true
     }
 
+    fun onFilterClick(){
+        _filterBtnClicked.value = true
+    }
+
+
+    fun disableFilterClick(){
+        _filterBtnClicked.value = false
+    }
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback?) {
     }

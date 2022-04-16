@@ -1,12 +1,14 @@
 package com.hsecourseproject.cpchoose.cplist.recycler
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hsecourseproject.cpchoose.R
 import com.hsecourseproject.cpchoose.models.CourseProjectDTO
 
-class CPAdapter : RecyclerView.Adapter<CPViewHolder>() {
+class CPAdapter(private val clickListener: OnRecyclerItemClicked) :
+    RecyclerView.Adapter<CPViewHolder>() {
 
     private var courseProjects: List<CourseProjectDTO> = listOf()
 
@@ -22,13 +24,14 @@ class CPAdapter : RecyclerView.Adapter<CPViewHolder>() {
 
     override fun onBindViewHolder(holder: CPViewHolder, position: Int) {
         holder.onBind(courseProjects[position])
+        holder.itemView.setOnClickListener {
+            clickListener.onClick(courseProjects[position])
+        }
     }
 
     override fun getItemCount(): Int = courseProjects.size
-
 }
 
-interface OnCPCardClickListener {
-    fun onCPCardClicked(courseProjectDTO: CourseProjectDTO)
+interface OnRecyclerItemClicked {
+    fun onClick(cp: CourseProjectDTO)
 }
-

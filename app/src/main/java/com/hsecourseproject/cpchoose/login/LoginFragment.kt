@@ -9,6 +9,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.hsecourseproject.cpchoose.MainActivity
 import com.hsecourseproject.cpchoose.R
 import com.hsecourseproject.cpchoose.databinding.FragmentLoginBinding
 
@@ -19,13 +21,17 @@ class LoginFragment : Fragment() {
         fun newInstance() = LoginFragment()
     }
 
-    private lateinit var loginViewModel: LoginFragmentViewModel
+    private lateinit var loginViewModel: LoginViewModel
 
     private var _binding: FragmentLoginBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private val navHostFragment by lazy {
+        Navigation.findNavController(activity as MainActivity, R.id.fragmentContainerView)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,10 +40,12 @@ class LoginFragment : Fragment() {
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
-        loginViewModel = ViewModelProvider(this)[LoginFragmentViewModel::class.java]
+        loginViewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
         binding.loginFragmentViewModel = loginViewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility=View.GONE
 
         setupUX()
 
@@ -117,6 +125,7 @@ class LoginFragment : Fragment() {
 
         loginViewModel.navigateToApp.observe(viewLifecycleOwner) { isCodeRight ->
             if (isCodeRight) {
+                //activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility=View.VISIBLE
                 Navigation.findNavController(view = requireView()).navigate(R.id.action_loginFragment_to_CPListFragment)
             }
         }

@@ -7,10 +7,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.hsecourseproject.cpchoose.cpinfo.CPInfo
 import com.hsecourseproject.cpchoose.cplist.CPListFragment
 import com.hsecourseproject.cpchoose.createcp.CreateCPFragment
 import com.hsecourseproject.cpchoose.login.LoginFragment
@@ -29,6 +32,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         isUserLoggedIn()
+        val bottomNavigationView=findViewById<BottomNavigationView>(R.id.bottomNavigation)
+        bottomNavigationView.setupWithNavController(navController)
+        //Delete the line below. it was for test
+        //navController.navigate(R.id.action_loginFragment_to_CPInfo)
     }
     private fun isUserLoggedIn() {
         UtilsSingleton.init(application)
@@ -36,14 +43,12 @@ class MainActivity : AppCompatActivity() {
         val sharedPreference =
             getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
         val isLoggedIn = sharedPreference.getBoolean(getString(R.string.is_logged_in), false)
+
         if (isLoggedIn) {
             Toast.makeText(this, "User is already logged in", Toast.LENGTH_LONG)
                 .show()
 
             navController.navigate(R.id.action_loginFragment_to_CPListFragment)
-
-            //startFragment(CPListFragment.newInstance())
-            //startFragment(CreateCPFragment.newInstance())
         } else {
             //startFragment(LoginFragment.newInstance())
             supportActionBar?.hide()

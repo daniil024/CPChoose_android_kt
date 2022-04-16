@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="profileviewModel"
+            type="com.hsecourseproject.cpchoose.profile.ProfileViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            tools:context=".ProfileFragment">
+
+            <TextView
+                android:id="@+id/profileScreenTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_screen_title"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/profileFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileScreenTitle"
+                android:layout_marginTop="16dp"
+                android:labelFor="@+id/profileFirstNameEditText"
+                android:text="@string/profile_firstname_label" />
+
+            <EditText
+                android:id="@+id/profileFirstNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileFirstName"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:text="@={profileviewModel.firstName}" />
+
+            <TextView
+                android:id="@+id/profileLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileFirstNameEditText"
+                android:layout_marginTop="8dp"
+                android:labelFor="@+id/profileLastNameEditText"
+                android:text="@string/profile_lastname_label" />
+
+            <EditText
+                android:id="@+id/profileLastNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileLastName"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:text="@={profileviewModel.lastName}" />
+
+            <TextView
+                android:id="@+id/profilePatronymic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileLastNameEditText"
+                android:layout_marginTop="8dp"
+                android:labelFor="@+id/profilePatronymicEditText"
+                android:text="@string/profile_patronymic_label" />
+
+            <EditText
+                android:id="@+id/profilePatronymicEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profilePatronymic"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:text="@={profileviewModel.patronymic}" />
+
+            <TextView
+                android:id="@+id/profileCompanyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profilePatronymicEditText"
+                android:layout_marginTop="8dp"
+                android:labelFor="@+id/profileCompanyNameEditText"
+                android:text="@string/profile_company_name_label" />
+
+            <EditText
+                android:id="@+id/profileCompanyNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileCompanyName"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:text="@={profileviewModel.companyName}" />
+
+            <TextView
+                android:id="@+id/profileSubdivision"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileCompanyNameEditText"
+                android:layout_marginTop="8dp"
+                android:labelFor="@+id/profileSubdivisionEditText"
+                android:text="@string/profile_subdivision_label" />
+
+            <EditText
+                android:id="@+id/profileSubdivisionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileSubdivision"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:text="@={profileviewModel.subdivision}" />
+
+            <TextView
+                android:id="@+id/profilePosition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profileSubdivisionEditText"
+                android:layout_marginTop="8dp"
+                android:labelFor="@+id/profilePositionEditText"
+                android:text="@string/profile_position_label" />
+
+            <EditText
+                android:id="@+id/profilePositionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profilePosition"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:text="@={profileviewModel.position}" />
+
+            <Button
+                android:id="@+id/updateProfessorDataBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profilePositionEditText"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/main_blue"
+                android:onClick="@{()->profileviewModel.updateProfessorData()}"
+                android:text="@string/profile_send_btn_text"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+        </RelativeLayout>
+    </ScrollView>
+</layout>

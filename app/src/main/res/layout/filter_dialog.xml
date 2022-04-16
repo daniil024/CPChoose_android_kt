@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/sortByProfessorSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/sortByProfessorSurnameText"
+        android:text="Введите фамилию науч. руководителя для фильтрации:" />
+
+    <EditText
+        android:id="@+id/sortByProfessorSurnameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sortByProfessorSurname"
+        android:importantForAutofill="no"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/sortByCPWord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/sortByCPWordText"
+        android:text="Введите название (или слово содержащееся в названии) курсового проекта:"
+        android:layout_below="@+id/sortByProfessorSurnameText"/>
+
+    <EditText
+        android:id="@+id/sortByCPWordText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sortByCPWord"
+        android:importantForAutofill="no"
+        android:inputType="text" />
+
+</RelativeLayout>

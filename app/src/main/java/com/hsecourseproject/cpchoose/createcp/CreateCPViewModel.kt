@@ -9,11 +9,15 @@ import androidx.databinding.Bindable
 import androidx.databinding.BindingAdapter
 import androidx.databinding.Observable
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.hsecourseproject.cpchoose.createcp.network.CreateCPNetwork
 import com.hsecourseproject.cpchoose.models.CourseProjectDTO
+import com.hsecourseproject.cpchoose.models.UserDTO
 import com.hsecourseproject.cpchoose.models.enums.CPMode
 import com.hsecourseproject.cpchoose.models.enums.CPType
+import com.hsecourseproject.cpchoose.models.enums.UserType
+import com.hsecourseproject.cpchoose.profile.network.ProfileNetwork
 import com.hsecourseproject.cpchoose.utils.UtilsSingleton
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -25,66 +29,99 @@ import java.util.*
 class CreateCPViewModel(application: Application) : AndroidViewModel(application), Observable {
 
     @Bindable
-    var titleRus = MutableLiveData<String>()
+    var professorEmail = MutableLiveData<String?>()
 
     @Bindable
-    var titleEng = MutableLiveData<String>()
+    var titleRus = MutableLiveData<String?>()
 
     @Bindable
-    var projectType = MutableLiveData<Int>()
+    var titleEng = MutableLiveData<String?>()
 
     @Bindable
-    var projectMode = MutableLiveData<Int>()
+    var projectType = MutableLiveData<Int?>()
 
     @Bindable
-    var membersCount = MutableLiveData<String>()
+    var projectMode = MutableLiveData<Int?>()
 
     @Bindable
-    var initiator = MutableLiveData<String>()
+    var membersCount = MutableLiveData<String?>()
 
     @Bindable
-    var companySubdivision = MutableLiveData<String>()
+    var initiator = MutableLiveData<String?>()
 
     @Bindable
-    var mentor = MutableLiveData<String>()
+    var companySubdivision = MutableLiveData<String?>()
 
     @Bindable
-    var cpAnnotation = MutableLiveData<String>()
+    var mentor = MutableLiveData<String?>()
 
     @Bindable
-    var goal = MutableLiveData<String>()
+    var cpAnnotation = MutableLiveData<String?>()
 
     @Bindable
-    var tasks = MutableLiveData<String>()
+    var goal = MutableLiveData<String?>()
 
     @Bindable
-    var participantsTasks = MutableLiveData<String>()
+    var tasks = MutableLiveData<String?>()
 
     @Bindable
-    var results = MutableLiveData<String>()
+    var participantsTasks = MutableLiveData<String?>()
 
     @Bindable
-    var additionalInfo = MutableLiveData<String>()
+    var results = MutableLiveData<String?>()
 
     @Bindable
-    var workplace = MutableLiveData<String>()
+    var additionalInfo = MutableLiveData<String?>()
 
     @Bindable
-    var studentsRequirements = MutableLiveData<String>()
+    var workplace = MutableLiveData<String?>()
 
     @Bindable
-    var contacts = MutableLiveData<String>()
+    var studentsRequirements = MutableLiveData<String?>()
 
     @Bindable
-    var selectionForm = MutableLiveData<String>()
+    var contacts = MutableLiveData<String?>()
 
     @Bindable
-    var evaluationCriteria = MutableLiveData<String>()
+    var selectionForm = MutableLiveData<String?>()
+
+    @Bindable
+    var evaluationCriteria = MutableLiveData<String?>()
 
     var startDate = MutableLiveData<String>()
 
     var finishDate = MutableLiveData<String>()
 
+    private val _navigateToList = MutableLiveData<Boolean>()
+
+    val navigateToList: LiveData<Boolean>
+        get() = _navigateToList
+
+
+    fun fillProfessorData() {
+        if (UtilsSingleton.INSTANCE.getUserType() == UserType.STUDENT) {
+            CreateCPNetwork.createCPApiService.getUser(UtilsSingleton.INSTANCE.getUserEmail())
+                .enqueue(
+                    object : Callback<UserDTO> {
+                        override fun onFailure(call: Call<UserDTO>, t: Throwable) {
+                            t.printStackTrace()
+                        }
+
+                        override fun onResponse(
+                            call: Call<UserDTO>,
+                            response: Response<UserDTO>
+                        ) {
+                            val user = response.body()
+                            professorEmail.value = user?.email
+                            mentor.value =
+                                user?.firstName + " " + user?.lastName + " " + user?.patronymic
+                            initiator.value = user?.professor?.companyName
+                            companySubdivision.value = user?.professor?.subdivision
+                        }
+                    }
+                )
+        }
+    }
 
     private fun verificateCPFormData(): Boolean {
         // TODO: check that all required fields are filled
@@ -94,8 +131,9 @@ class CreateCPViewModel(application: Application) : AndroidViewModel(application
 
     private fun createCP(): CourseProjectDTO {
         return CourseProjectDTO(
-            null,
-            UtilsSingleton.INSTANCE.getUserId(),
+            id = null,
+            userId = UtilsSingleton.INSTANCE.getUserId(),
+            professorEmail = professorEmail.value,
             titleRus = titleRus.value,
             titleEng = titleEng.value,
             type = UtilsSingleton.INSTANCE.getCPType(projectType.value ?: 0),
@@ -117,7 +155,7 @@ class CreateCPViewModel(application: Application) : AndroidViewModel(application
             finishDate = finishDate.value,
             selectionForm = selectionForm.value,
             evaluationCriteria = evaluationCriteria.value,
-            null,
+            status = null,
         )
     }
 
@@ -134,6 +172,7 @@ class CreateCPViewModel(application: Application) : AndroidViewModel(application
                     response: Response<ResponseBody>
                 ) {
                     Toast.makeText(getApplication(), "CP was sent", Toast.LENGTH_LONG).show()
+                    _navigateToList.value = true
                 }
             }
         )

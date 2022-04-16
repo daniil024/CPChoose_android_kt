@@ -27,14 +27,10 @@ object CPNetwork {
         .readTimeout(30, TimeUnit.SECONDS)
         .build()
 
-    private val gson = GsonBuilder()
-        .create()
-
     @Suppress("EXPERIMENTAL_API_USAGE")
     private val retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
         .client(okHttpClient)
-        //.addConverterFactory(GsonConverterFactory.create(gson))
         .addConverterFactory(json.asConverterFactory(contentType))
         .build()
 

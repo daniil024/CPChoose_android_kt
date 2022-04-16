@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:id="@+id/listSwitcherButtonToggleGroup"
             android:layout_width="wrap_content"
@@ -30,40 +29,40 @@
                 android:id="@+id/cpFullList"
                 android:layout_width="@dimen/cp_list_toggle_button_group_width"
                 android:layout_height="@dimen/login_toggle_button_group_height"
+                android:onClick="@{()->cpListViewModel.onFullListClicked()}"
                 android:text="@string/cp_full_list_button"
                 android:textColor="@color/black"
                 android:textSize="@dimen/toggle_button_text_size"
                 app:backgroundTint="@color/main_blue"
                 app:cornerRadius="@dimen/button_corner_radius"
                 app:strokeColor="@color/main_blue"
-                app:strokeWidth="@dimen/material_button_stroke_width"
-                android:onClick="@{()->cpListViewModel.onFullListClicked()}"/>
+                app:strokeWidth="@dimen/material_button_stroke_width" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/createdByUser"
                 android:layout_width="@dimen/cp_list_toggle_button_group_width"
                 android:layout_height="@dimen/login_toggle_button_group_height"
+                android:onClick="@{()->cpListViewModel.onCreatedListClicked()}"
                 android:text="@string/cp_created_button"
                 android:textColor="@color/black"
                 android:textSize="@dimen/toggle_button_text_size"
                 app:backgroundTint="@color/white"
                 app:cornerRadius="@dimen/button_corner_radius"
                 app:strokeColor="@color/main_blue"
-                app:strokeWidth="@dimen/material_button_stroke_width"
-                android:onClick="@{()->cpListViewModel.onCreatedListClicked()}"/>
+                app:strokeWidth="@dimen/material_button_stroke_width" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/proposedToUser"
                 android:layout_width="@dimen/cp_list_toggle_button_group_width"
                 android:layout_height="@dimen/login_toggle_button_group_height"
+                android:onClick="@{()->cpListViewModel.onProposedListClicked()}"
                 android:text="@string/cp_proposed_button"
                 android:textColor="@color/black"
                 android:textSize="@dimen/toggle_button_text_size"
                 app:backgroundTint="@color/white"
                 app:cornerRadius="@dimen/button_corner_radius"
                 app:strokeColor="@color/main_blue"
-                app:strokeWidth="@dimen/material_button_stroke_width"
-                android:onClick="@{()->cpListViewModel.onProposedListClicked()}"/>
+                app:strokeWidth="@dimen/material_button_stroke_width" />
 
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -72,18 +71,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:paddingBottom="@dimen/cp_list_recycler_view_padding_bottom"
+            android:paddingBottom="@dimen/fragment_margin_bottom"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/listSwitcherButtonToggleGroup" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
-            android:layout_width="match_parent"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="66dp"
+            android:contentDescription="@string/default_desc"
+            android:onClick="@{()->cpListViewModel.onFilterClick()}"
+            android:src="@drawable/ic_filter_list"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:menu="@menu/student_bottom_navigation_menu" />
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -526,6 +526,28 @@
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
                 app:layout_constraintTop_toBottomOf="@id/createCPEvaluationCriteria" />
 
+            <TextView
+                android:id="@+id/createCPProfessorEmail"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:labelFor="@+id/createCPProfessorEmailEditText"
+                android:text="@string/create_cp_project_professor_email"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPEvaluationCriteriaEditText" />
+
+            <EditText
+                android:id="@+id/createCPProfessorEmailEditText"
+                android:layout_width="@dimen/zero_dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/create_cp_default_items_margin_top"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:text="@={createCPViewModel.professorEmail}"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/createCPProfessorEmail" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/sentToCPPRButton"
@@ -541,9 +563,14 @@
                 android:textSize="@dimen/create_cp_project_send_to_cppr_button_text_size"
                 app:layout_constraintEnd_toStartOf="@id/guidelineRight"
                 app:layout_constraintStart_toEndOf="@id/guidelineLeft"
-                app:layout_constraintTop_toBottomOf="@id/createCPEvaluationCriteriaEditText" />
+                app:layout_constraintTop_toBottomOf="@id/createCPProfessorEmailEditText" />
 
-
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                app:layout_constraintEnd_toStartOf="@id/guidelineRight"
+                app:layout_constraintStart_toEndOf="@id/guidelineLeft"
+                app:layout_constraintTop_toBottomOf="@id/sentToCPPRButton" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

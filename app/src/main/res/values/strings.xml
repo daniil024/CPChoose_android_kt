@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">CP choose</string>
 
+    <string name="default_desc">Default description</string>
+
     <!-- Strings related to login -->
     <string name="login_hse_image_desc">HSE logo</string>
 
@@ -62,6 +64,7 @@
     <string name="create_cp_project_requests_finish_date">Дата окончания приема заявок</string>
     <string name="create_cp_project_selection_form">Формы отбора студентов(собеседование, тестирование, выполнение задания и т.п.)</string>
     <string name="create_cp_project_evaluation_criteria">Критерии оценивания результатов выполнения проекта руководителем</string>
+    <string name="create_cp_project_professor_email">E-mail научного руководителя</string>
     <string name="create_cp_project_send_to_cppr_text">Отправить в ЦППР</string>
 
     <string-array name="create_cp_project_types_spinner_items">
@@ -73,5 +76,57 @@
         <item>Индивидуальный</item>
         <item>Командный</item>
     </string-array>
+
+
+    <!-- Strings related to cp_info -->
+    <string name="cp_info_title">Описание проекта для студентов ФКН НИУ ВШЭ</string>
+    <string name="cp_info_project_title_rus">Название проекта (рус.)</string>
+    <string name="cp_info_project_title_eng">Название проекта (англ.)</string>
+    <string name="cp_info_project_type">Тип проекта</string>
+    <string name="cp_info_project_mode">Вид проекта</string>
+    <string name="cp_info_project_members_count">Кол-во студентов на проекте</string>
+    <string name="cp_info_project_initiator">Инициатор проекта</string>
+    <string name="cp_info_project_company_subdivision">Подразделение компании/НИУ ВШЭ</string>
+    <string name="cp_info_project_mentor_full_name">ФИО ментора/руководителя проекта</string>
+    <string name="cp_info_project_annotation">Аннотация проекта</string>
+    <string name="cp_info_project_goal">Цель проекта</string>
+    <string name="cp_info_project_tasks">Задачи проекта</string>
+    <string name="cp_info_project_participants_tasks">Задачи каждого из участников проекта</string>
+    <string name="cp_info_project_results">Планируемые результаты проекта</string>
+    <string name="cp_info_project_additional_info">Иная информация</string>
+    <string name="cp_info_project_workplace">Территория выполнения проекта</string>
+    <string name="cp_info_project_students_requirements">Требования к студентам - участникам проекта</string>
+    <string name="cp_info_project_contacts">Заявки студентов на проект принимаются</string>
+    <string name="cp_info_project_no_contacts">Укажите контакты или "не принимаются"</string>
+    <!--    <string name="cp_info_project_requests_dates">Дата начала и окончания приема заявок</string>-->
+    <string name="cp_info_project_requests_start_date">Дата начала приема заявок</string>
+    <string name="cp_info_project_requests_finish_date">Дата окончания приема заявок</string>
+
+    <string name="cp_info_project_selection_form">Формы отбора студентов(собеседование, тестирование, выполнение задания и т.п.)</string>
+    <string name="cp_info_project_evaluation_criteria">Критерии оценивания результатов выполнения проекта руководителем</string>
+    <string name="cp_info_project_professor_email">E-mail научного руководителя</string>
+    <string name="cp_info_apply_request_text">Отправить заявку</string>
+
+
+    <!-- Strings to pass object to cp_info -->
+    <string name="cp_info_bundle_cp">courseProjectBundled</string>
+
+
+    <!-- Strings related to profile -->
+    <string name="profile_screen_title">Введите информацию для автозаполнения</string>
+    <string name="profile_lastname_label">Фамилия:</string>
+    <string name="profile_firstname_label">Имя:</string>
+    <string name="profile_patronymic_label">Отчество:</string>
+    <string name="profile_company_name_label">Название организации:</string>
+    <string name="profile_subdivision_label">Подразделение организации:</string>
+    <string name="profile_position_label">Должность:</string>
+    <string name="profile_send_btn_text">Обновить данные</string>
+
+
+    <!-- Strings related to cp_approving -->
+    <string name="cp_approving_title">Подтвердите заявки, полученные от студентов</string>
+    <string name="cp_approving_accept_button">Принять</string>
+    <string name="cp_approving_decline_button">Отклонить</string>
+
 
 </resources>

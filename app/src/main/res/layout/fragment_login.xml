@@ -7,7 +7,7 @@
 
         <variable
             name="loginFragmentViewModel"
-            type="com.hsecourseproject.cpchoose.login.LoginFragmentViewModel" />
+            type="com.hsecourseproject.cpchoose.login.LoginViewModel" />
     </data>
 
     <ScrollView

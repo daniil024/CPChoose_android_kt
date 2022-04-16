@@ -1,17 +1,23 @@
 package com.hsecourseproject.cpchoose.models
 
+import com.hsecourseproject.cpchoose.models.enums.CPStatus
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class ApprovedCPDTO(
     @SerialName("id")
-    val id: Int?,
+    var id: Int?,
 
-    @SerialName("professor_id")
-    val professor: ProfessorDTO?,
+    @SerialName("professor")
+    var professor: UserDTO?,
 
-    @SerialName("student_id")
-    val student: Set<StudentDTO>?,
+    @SerialName("student")
+    var student: UserDTO?,
 
-    @SerialName("course_project_id")
-    val courseProject:CourseProjectDTO?
+    @SerialName("courseProject")
+    var courseProject:CourseProjectDTO?,
+
+    @SerialName("status")
+    var status:CPStatus
 )

@@ -34,7 +34,6 @@
     <dimen name="cp_list_toggle_button_group_margin_top">4dp</dimen>
     <dimen name="cp_list_toggle_button_group_width">110dp</dimen>
     <dimen name="cp_list_recycler_view_item_padding">4dp</dimen>
-    <dimen name="cp_list_recycler_view_padding_bottom">110dp</dimen>
 
     <!-- Screen margins for cp_card -->
     <dimen name="cp_card_title_text_size">16sp</dimen>
@@ -51,6 +50,17 @@
     <dimen name="create_cp_project_send_to_cppr_button_margin_top">30dp</dimen>
     <dimen name="create_cp_project_send_to_cppr_button_text_size">24sp</dimen>
     <dimen name="create_cp_start_date_label_margin_top">20dp</dimen>
+
+    <!-- Padding for fragments -->
+    <dimen name="fragment_margin_bottom">110dp</dimen>
+
+    <!-- Margins for cp_info -->
+    <dimen name="cp_info_default_margin_top">4dp</dimen>
+    <dimen name="cp_info_screen_margin_top">8dp</dimen>
+    <dimen name="cp_info_guideline_margin">16dp</dimen>
+    <dimen name="cp_info_screen_title_text_size">22sp</dimen>
+    <dimen name="cp_info_apply_request_button_margin_top">30dp</dimen>
+    <dimen name="cp_info_apply_request_button_text_size">24sp</dimen>
 
 
 </resources>

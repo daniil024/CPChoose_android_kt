@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hsecourseproject.cpchoose.R
 import com.hsecourseproject.cpchoose.models.CourseProjectDTO
 
-class CPViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class CPViewHolder(itemView: View) :
+    RecyclerView.ViewHolder(itemView) {
     private val title: TextView = itemView.findViewById(R.id.cpCardTitle)
     private val status: TextView = itemView.findViewById(R.id.cpCardStatus)
     private val shortDescription: TextView = itemView.findViewById(R.id.cpCardShortDesc)
