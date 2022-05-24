@@ -2,21 +2,12 @@ package com.hsecourseproject.cpchoose
 
 import android.content.Context
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.hsecourseproject.cpchoose.cpinfo.CPInfo
-import com.hsecourseproject.cpchoose.cplist.CPListFragment
-import com.hsecourseproject.cpchoose.createcp.CreateCPFragment
-import com.hsecourseproject.cpchoose.login.LoginFragment
 import com.hsecourseproject.cpchoose.utils.UtilsSingleton
 
 class MainActivity : AppCompatActivity() {
@@ -38,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         //navController.navigate(R.id.action_loginFragment_to_CPInfo)
     }
     private fun isUserLoggedIn() {
-        UtilsSingleton.init(application)
+        UtilsSingleton.init(applicationContext)
 
         val sharedPreference =
             getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)

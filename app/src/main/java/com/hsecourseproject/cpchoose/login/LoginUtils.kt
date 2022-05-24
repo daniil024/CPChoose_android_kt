@@ -1,5 +1,6 @@
 package com.hsecourseproject.cpchoose.login
 
+import android.util.Patterns
 import java.util.regex.Pattern
 
 class LoginUtils {
@@ -12,6 +13,8 @@ class LoginUtils {
                     "hse\\.ru")
 
         fun isEmailCorrect(email: String): Boolean {
+            // Patterns.EMAIL_ADDRESS.mather(email).matches()
+
             val pattern:Pattern = EMAIL_ADDRESS
             return pattern.matcher(email).matches()
         }

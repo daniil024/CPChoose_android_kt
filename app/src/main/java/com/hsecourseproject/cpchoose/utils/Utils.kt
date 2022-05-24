@@ -1,6 +1,5 @@
 package com.hsecourseproject.cpchoose.utils
 
-import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.hsecourseproject.cpchoose.R
@@ -8,7 +7,7 @@ import com.hsecourseproject.cpchoose.models.enums.CPMode
 import com.hsecourseproject.cpchoose.models.enums.CPType
 import com.hsecourseproject.cpchoose.models.enums.UserType
 
-class UtilsSingleton private constructor(private val application: Application) {
+class UtilsSingleton private constructor(private val application: Context) {
 
     companion object {
         lateinit var INSTANCE: UtilsSingleton
@@ -20,7 +19,7 @@ class UtilsSingleton private constructor(private val application: Application) {
         // Custom init function is called from outside and replaces
         // THE WHOLE SINGLETON with a new instance
         // to avoid internal dependencies on the old context.
-        fun init(application: Application) {
+        fun init(application: Context) {
             INSTANCE = UtilsSingleton(application)
             sharedPreference = application.getSharedPreferences(
                 application.getString(R.string.preference_file_key),

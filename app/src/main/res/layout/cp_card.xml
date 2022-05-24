@@ -42,6 +42,7 @@
             android:layout_width="@dimen/zero_dp"
             android:layout_height="wrap_content"
             android:textSize="@dimen/cp_card_status_text_size"
+            android:textAlignment="viewEnd"
             app:layout_constraintEnd_toStartOf="@id/guidelineRight"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_CPListFragment_to_filterDialog"
             app:destination="@id/filterDialog" />
+        <action
+            android:id="@+id/action_CPListFragment_to_createCPFragment"
+            app:destination="@id/createCPFragment" />
     </fragment>
     <fragment
         android:id="@+id/createCPFragment"

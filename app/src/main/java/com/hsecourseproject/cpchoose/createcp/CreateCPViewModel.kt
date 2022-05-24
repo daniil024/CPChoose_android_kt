@@ -99,7 +99,7 @@ class CreateCPViewModel(application: Application) : AndroidViewModel(application
 
 
     fun fillProfessorData() {
-        if (UtilsSingleton.INSTANCE.getUserType() == UserType.STUDENT) {
+        if (UtilsSingleton.INSTANCE.getUserType() == UserType.PROFESSOR) {
             CreateCPNetwork.createCPApiService.getUser(UtilsSingleton.INSTANCE.getUserEmail())
                 .enqueue(
                     object : Callback<UserDTO> {

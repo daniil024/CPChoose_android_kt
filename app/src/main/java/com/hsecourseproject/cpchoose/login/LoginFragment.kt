@@ -45,7 +45,7 @@ class LoginFragment : Fragment() {
         binding.loginFragmentViewModel = loginViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility=View.GONE
+        activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility = View.GONE
 
         setupUX()
 
@@ -126,7 +126,9 @@ class LoginFragment : Fragment() {
         loginViewModel.navigateToApp.observe(viewLifecycleOwner) { isCodeRight ->
             if (isCodeRight) {
                 //activity?.findViewById<BottomNavigationView>(R.id.bottomNavigation)?.visibility=View.VISIBLE
-                Navigation.findNavController(view = requireView()).navigate(R.id.action_loginFragment_to_CPListFragment)
+//                Navigation.findNavController(view = requireView()).navigate(R.id.action_loginFragment_to_CPListFragment)
+                navHostFragment.navigate(R.id.action_loginFragment_to_CPListFragment)
+
             }
         }
 

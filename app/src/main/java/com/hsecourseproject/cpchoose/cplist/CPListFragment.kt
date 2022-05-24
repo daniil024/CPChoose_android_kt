@@ -68,10 +68,11 @@ class CPListFragment : Fragment() {
 
         bottomNavigationView?.visibility = View.VISIBLE
 
+        binding.proposedToUser.visibility = View.GONE
         if (UtilsSingleton.INSTANCE.getUserType() == UserType.STUDENT) {
-            binding.proposedToUser.visibility = View.GONE
-            //bottomNavigationView?.menu?.findItem(R.id.profileFragment)?.isVisible = false
-            //bottomNavigationView?.menu?.findItem(R.id.CPApprovingFragment)?.isVisible = false
+            //binding.proposedToUser.visibility = View.GONE
+            bottomNavigationView?.menu?.findItem(R.id.profileFragment)?.isVisible = false
+            bottomNavigationView?.menu?.findItem(R.id.CPApprovingFragment)?.isVisible = false
         }
 
         setupTBG()

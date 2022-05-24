@@ -22,7 +22,7 @@ class ApprovedCPViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         approvedCPTitle.text = approvedCPDTO.courseProject?.titleRus
         shortDesc.text = approvedCPDTO.courseProject?.annotation
         val studentText =
-            "Студент: ${approvedCPDTO.student?.firstName} ${approvedCPDTO.student?.lastName}+ " +
+            "Студент: ${approvedCPDTO.student?.firstName} ${approvedCPDTO.student?.lastName} " +
                     "${approvedCPDTO.student?.patronymic}"
         this.student.text = studentText
 
